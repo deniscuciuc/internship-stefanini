@@ -22,6 +22,7 @@ public class TaskJdbcDAO implements TaskDAO {
 		
 	}
 	
+	@SuppressWarnings("unused")
 	private TaskJdbcDAO(List<TaskEntity> tasks) {
 		TaskJdbcDAO.tasks = tasks;
 	}
@@ -34,7 +35,7 @@ public class TaskJdbcDAO implements TaskDAO {
 	
 	public static List<TaskEntity> getTasks() {
 		if (TaskJdbcDAO.tasks == null) {
-			TaskJdbcDAO.tasks = new ArrayList<>();
+			TaskJdbcDAO.tasks = new ArrayList<TaskEntity>();
 		}
 		return TaskJdbcDAO.tasks;
 	}
@@ -42,12 +43,12 @@ public class TaskJdbcDAO implements TaskDAO {
 	@Override
 	public void addTask(UserEntity user, TaskEntity task) {
 		try {
-			String query = "INSERT INTO tasks(Id, UserId, Title, Describtion)";
+			String query = "INSERT INTO tasks(UserId, Title, Describtion) VALUES (?, ?, ?)";
 			connection = getConnection();
 			preparedStatement = connection.prepareStatement(query);
-			preparedStatement.setInt(2, user.getId());
-			preparedStatement.setString(3,  task.getTitle());
-			preparedStatement.setString(4,  task.getDescribtion());
+			preparedStatement.setInt(1, user.getId());
+			preparedStatement.setString(2,  task.getTitle());
+			preparedStatement.setString(3,  task.getDescribtion());
 			preparedStatement.executeUpdate();
 			System.out.println("Task added to MYSQL database succsesfully");
 		} catch (SQLException e) {
@@ -63,7 +64,7 @@ public class TaskJdbcDAO implements TaskDAO {
 	}
 
 	@Override
-	public List<TaskEntity> getAllTasks(UserEntity user) {
+	public void getAllTasks(UserEntity user) {
 		try {
 			String query = "SELECT * FROM tasks WHERE UserId = " + user.getId();
 			connection = getConnection();
@@ -83,6 +84,5 @@ public class TaskJdbcDAO implements TaskDAO {
 				e.printStackTrace();
 			}
 		}
-		return null;
 	}
 }

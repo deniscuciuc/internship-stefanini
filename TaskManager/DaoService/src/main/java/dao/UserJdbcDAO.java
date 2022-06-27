@@ -28,7 +28,7 @@ public class UserJdbcDAO implements UserDAO {
 
 	public static List<UserEntity> getUsers() {
 		if (UserJdbcDAO.users == null) {
-			UserJdbcDAO.users = new ArrayList<>();
+			UserJdbcDAO.users = new ArrayList<UserEntity>();
 		}
 		return UserJdbcDAO.users;
 	}
@@ -41,12 +41,12 @@ public class UserJdbcDAO implements UserDAO {
 	@Override
 	public void createUser(UserEntity user) {
 		try {
-			String query = "INSERT INTO users(Id, UserName, FirstName, LastName)";
+			String query = "INSERT INTO users(UserName, FirstName, LastName) VALUES (?, ?, ?)";
 			connection = getConnection();
 			preparedStatement = connection.prepareStatement(query);
-			preparedStatement.setString(2, user.getUserName());
-			preparedStatement.setString(3,  user.getFirstName());
-			preparedStatement.setString(4,  user.getLastName());
+			preparedStatement.setString(1, user.getUserName());
+			preparedStatement.setString(2,  user.getFirstName());
+			preparedStatement.setString(3,  user.getLastName());
 			preparedStatement.executeUpdate();
 			System.out.println("User added to MYSQL database succsesfully");
 		} catch (SQLException e) {
@@ -63,14 +63,14 @@ public class UserJdbcDAO implements UserDAO {
 
 	
 	@Override
-	public List<UserEntity> getAllUsers(List<UserEntity> users) {
+	public void getAllUsers() {
 		try {
 			String query = "SELECT * FROM users";
 			connection = getConnection();
 			preparedStatement = connection.prepareStatement(query);
 			resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
-				users.add(new UserEntity(resultSet.getInt("Id"), resultSet.getString("UserName"),
+				UserJdbcDAO.getUsers().add(new UserEntity(resultSet.getInt("Id"), resultSet.getString("UserName"),
 								   resultSet.getString("FirstName"), resultSet.getString("LastName"),
 								   new ArrayList<TaskEntity>()));
 			}
@@ -84,6 +84,5 @@ public class UserJdbcDAO implements UserDAO {
 				e.printStackTrace();
 			}
 		}
-		return null;
 	}
 }
