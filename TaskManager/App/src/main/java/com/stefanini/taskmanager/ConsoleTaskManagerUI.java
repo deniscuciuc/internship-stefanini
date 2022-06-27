@@ -9,13 +9,21 @@ import service.ShowAllUsersTasksCommand;
 import service.receivers.Task;
 import service.receivers.User;
 
+/**
+ * This class represents Console UI for all commands
+ * @author dcuciuc
+ */
 public class ConsoleTaskManagerUI {
 	
-	Invoker invoker = new Invoker();
-	User user = new User();
-	Task task = new Task();
-	Scanner scanner = new Scanner(System.in);
+	private Invoker invoker = new Invoker();
+	private User user = new User();
+	private Task task = new Task();
+	private Scanner scanner = new Scanner(System.in);
 	
+	
+	/**
+	 *	Method will display console user interface and asks user for an option, then will execute selected command.
+	 */
 	public void launchUI() {
 		showMenu();
 		int userChoice;	
@@ -34,9 +42,14 @@ public class ConsoleTaskManagerUI {
 				case 4:
 					showAllUsersTasks();
 					break;
+				case 5:
+					System.out.println("Exiting...");
+					return;
 				default:
 					System.out.println("Invalid option! Try again");
+					break;
 			}
+			System.out.print("Select option: ");
 		} while (userChoice != 5);
 	}
 	
