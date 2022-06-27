@@ -5,12 +5,13 @@
   <artifactId>TaskManager</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
+ 
   
   <modules>
   	<module>App</module>
   	<module>DaoService</module>
   </modules>
-  
+ 
   <dependencies>
   	<dependency>
 	    <groupId>info.picocli</groupId>
@@ -32,5 +33,6 @@
 	    <scope>test</scope>
 	</dependency>
   </dependencies>
+
 
 </project>
