@@ -10,27 +10,27 @@ import domain.TaskEntity;
 import domain.UserEntity;
 
 public class Task {
-	private Scanner scanner = new Scanner(System.in);
 	
 	public void addTask() {
-		if (isUsersListEmpty()) {
-			
-			User.readUserDataFromMySQL();
-			
-			if (isUsersListEmpty()) {
-				
-				showNoUsersAlreadyCreatedErrorMessage();
-				return;
-				
-			}
+		if (!areUsersCreated()) {
+			return;
 		}
-		
 		generateTask();
 	}
 	
 	public void showAllUsersTasks() {
+		if (!areUsersCreated()) {
+			return;
+		}
+		UserEntity user = findUserByUserName(getUserNameByUser());
 		
-	}
+		if (user.getNumberOfTasks() == 0) {
+			showUserHaveNoTasksErrorMessage();
+			return;
+		}
+		
+		displayTasks(user);
+ 	}
 	
 	
 	private void generateTask() {
@@ -40,13 +40,47 @@ public class Task {
 			showNoSuchUserErrorMessage();
 		} else {
 			TaskEntity task = getTaskDataFromUser();
-			DAOFactory.getDAOFactory(AvaibleDAOFactories.JDBC).getTaskDAO().addTask(user, task);
+			
+			saveUsersTask(user, task);
+			saveTaskMySQL(user, task);
 		}
 	}
 	
+	private void displayTasks(UserEntity user) {
+		List<TaskEntity> tasks = user.getTasks();
+		int taskCounter = 1;
+		
+		System.out.println("\n" + user.getUserName());
+		for (TaskEntity task : tasks) {
+			System.out.println("\n\nTask " + taskCounter);
+			System.out.println("Title: " + task.getTitle());
+			System.out.print("Describtion: " + task.getDescribtion());
+			taskCounter++;
+		}
+	}
+	
+	public boolean areUsersCreated() {
+		if (isUsersListEmpty()) {
+			
+			User.readUserDataFromMySQL();
+			
+			if (isUsersListEmpty()) {
+				
+				showNoUsersAlreadyCreatedErrorMessage();
+				return false;
+				
+			}
+		}
+		return true;
+	}
+	
 	private String getUserNameByUser() {
+		Scanner scanner = new Scanner(System.in);
 		System.out.print("Username: ");
 		String userName = scanner.nextLine();
+		
+		// scanner.nextLine() can fix exceptions such as scanner.nextInt source not found
+		scanner.nextLine();
 		return userName;
 	}
 	
@@ -61,6 +95,7 @@ public class Task {
 	}
 	
 	private TaskEntity getTaskDataFromUser() {
+		Scanner scanner = new Scanner(System.in);
 		
 		System.out.print("Title: ");
 		String title = scanner.nextLine();
@@ -69,6 +104,14 @@ public class Task {
 		String describtion = scanner.nextLine();
 		
 		return new TaskEntity(title, describtion);
+	}
+	
+	private void saveUsersTask(UserEntity user, TaskEntity task) {
+		user.getTasks().add(task);
+	}
+	
+	private void saveTaskMySQL(UserEntity user, TaskEntity task) {
+		DAOFactory.getDAOFactory(AvaibleDAOFactories.JDBC).getTaskDAO().addTask(user, task);
 	}
 	
 	private boolean isUsersListEmpty() {
@@ -81,5 +124,9 @@ public class Task {
 	
 	private void showNoSuchUserErrorMessage() {
 		System.out.println("No such user! Try again");
+	}
+	
+	private void showUserHaveNoTasksErrorMessage() {
+		System.out.println("User have no tasks!");
 	}
 }

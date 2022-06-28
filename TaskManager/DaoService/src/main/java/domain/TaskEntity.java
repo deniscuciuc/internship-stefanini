@@ -44,6 +44,4 @@ public class TaskEntity {
     public void setDescribtion(String describtion) {
         this.describtion = describtion;
     }
-    
-    
 }

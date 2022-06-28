@@ -15,7 +15,7 @@ public class User {
 	public void createUser() {
 		UserEntity user = getUserDataFromUser();
 		if (user == null) {
-			showUserAlreadyExistError();
+			showUserAlreadyExistErrorMessage();
 		} else {
 			saveUserList(user);
 			saveUserMySQL(user);
@@ -23,12 +23,17 @@ public class User {
 	}
 	
 	public void showAllUsers() {
-		List<UserEntity> users = UserJdbcDAO.getUsers();
-		
-		if (users.isEmpty()) {
+	
+		if (UserJdbcDAO.getUsers().isEmpty()) {
 			readUserDataFromMySQL();
+			
+			if (UserJdbcDAO.getUsers().isEmpty()) {
+				showNoUsersAlreadyCreatedErrorMessage();
+				return;
+			}
 		}
 		
+		List<UserEntity> users = UserJdbcDAO.getUsers();
 		for (UserEntity user : users) {
 			System.out.println("Id = " + user.getId() + " | Username = " + user.getUserName() +  " | Full name = " + user.getFullName() + 
 							   " | Number of tasks = " + user.getNumberOfTasks());
@@ -39,6 +44,7 @@ public class User {
 		DAOFactory.getDAOFactory(AvaibleDAOFactories.JDBC).getUserDAO().getAllUsers();
 	}
 
+	@SuppressWarnings("resource")
 	private UserEntity getUserDataFromUser() {
 		Scanner scanner = new Scanner(System.in);
 		
@@ -56,17 +62,17 @@ public class User {
 		System.out.print("Last name: ");
 		String lastName = scanner.nextLine();
 		
-		scanner.close();
 		
 		List<TaskEntity> tasks = new ArrayList<TaskEntity>();
 		
-		int id = getLastUserId() + 1;
-		
-		return new UserEntity(id, firstName, lastName, userName, tasks);
+		return new UserEntity(firstName, lastName, userName, tasks);
 	}
 	
 	private boolean userNameAlreadyExists(String userName) {
 		List<UserEntity> users = UserJdbcDAO.getUsers();
+		if (users.isEmpty()) {
+			readUserDataFromMySQL();
+		}
 		for (UserEntity user : users) {
 			if (user.getUserName().equals(userName)) {
 				return true;
@@ -83,11 +89,11 @@ public class User {
 		DAOFactory.getDAOFactory(AvaibleDAOFactories.JDBC).getUserDAO().createUser(user);
 	}
 	
-	private int getLastUserId() {
-		return UserJdbcDAO.getUsers().get(UserJdbcDAO.getUsers().size() - 1).getId();
+	private void showUserAlreadyExistErrorMessage() {
+		System.out.println("Username already exist! Try again");
 	}
 	
-	private void showUserAlreadyExistError() {
-		System.out.println("Username already exist! Try again");
+	private void showNoUsersAlreadyCreatedErrorMessage() {
+		System.out.println("No users already created!");
 	}
 }
