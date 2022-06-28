@@ -18,13 +18,14 @@ public class ConsoleTaskManagerUI {
 	private Invoker invoker = new Invoker();
 	private User user = new User();
 	private Task task = new Task();
-	private Scanner scanner = new Scanner(System.in);
 	
 	
 	/**
 	 *	Method will display console user interface and asks user for an option, then will execute selected command.
 	 */
 	public void launchUI() {
+		Scanner scanner = new Scanner(System.in);
+		
 		showMenu();
 		int userChoice;	
 		do {
