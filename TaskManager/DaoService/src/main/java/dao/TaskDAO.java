@@ -6,5 +6,5 @@ import domain.UserEntity;
 
 public interface TaskDAO {
 	void addTask(UserEntity user, TaskEntity task);
-	void getAllTasks(UserEntity user);
+	UserEntity getAllUsersTasks(UserEntity user);
 }

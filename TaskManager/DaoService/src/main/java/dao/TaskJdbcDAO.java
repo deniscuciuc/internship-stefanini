@@ -64,14 +64,14 @@ public class TaskJdbcDAO implements TaskDAO {
 	}
 
 	@Override
-	public void getAllTasks(UserEntity user) {
+	public UserEntity getAllUsersTasks(UserEntity user) {
 		try {
 			String query = "SELECT * FROM tasks WHERE UserId = " + user.getId();
 			connection = getConnection();
 			preparedStatement = connection.prepareStatement(query);
 			resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
-				tasks.add(new TaskEntity(resultSet.getInt("Id"), resultSet.getString("Title"),
+				user.getTasks().add(new TaskEntity(resultSet.getInt("Id"), resultSet.getString("Title"),
 								   resultSet.getString("Describtion")));
 			}
 		} catch(SQLException e) {
@@ -84,5 +84,6 @@ public class TaskJdbcDAO implements TaskDAO {
 				e.printStackTrace();
 			}
 		}
+		return user;
 	}
 }

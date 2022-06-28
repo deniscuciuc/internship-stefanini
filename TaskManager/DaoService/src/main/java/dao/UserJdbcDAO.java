@@ -70,9 +70,11 @@ public class UserJdbcDAO implements UserDAO {
 			preparedStatement = connection.prepareStatement(query);
 			resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
-				UserJdbcDAO.getUsers().add(new UserEntity(resultSet.getInt("Id"), resultSet.getString("UserName"),
-								   resultSet.getString("FirstName"), resultSet.getString("LastName"),
-								   new ArrayList<TaskEntity>()));
+				UserEntity user = new UserEntity(resultSet.getInt("Id"), resultSet.getString("UserName"),
+						   resultSet.getString("FirstName"), resultSet.getString("LastName"),
+						   new ArrayList<TaskEntity>());
+				user = DAOFactory.getDAOFactory(AvaibleDAOFactories.JDBC).getTaskDAO().getAllUsersTasks(user);
+				users.add(user);
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();
