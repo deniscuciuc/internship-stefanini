@@ -1,0 +1,70 @@
+@options
+@packages
+@argfile
+-classpath
+'C:/Users/DCUCIUC/Desktop/Repositories/internship-stefanini/TaskManager/App/target/classes;C:/Users/DCUCIUC/Desktop/Repositories/internship-stefanini/TaskManager/DaoService/target/classes;C:/Users/DCUCIUC/.m2/repository/info/picocli/picocli/3.9.6/picocli-3.9.6.jar'
+-encoding
+'Cp1252'
+-protected
+-sourcepath
+'C:/Users/DCUCIUC/Desktop/Repositories/internship-stefanini/TaskManager/App/src/main/java;C:/Users/DCUCIUC/Desktop/Repositories/internship-stefanini/TaskManager/DaoService/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2022. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'C:/Users/DCUCIUC/Desktop/Repositories/internship-stefanini/TaskManager/target/site/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'TaskManager 0.0.1-SNAPSHOT API'
+-linkoffline
+'https://docs.oracle.com/javase/8/docs/api' 'C:/Users/DCUCIUC/Desktop/Repositories/internship-stefanini/TaskManager/target/javadoc-bundle-options'
+-use
+-version
+-windowtitle
+'TaskManager 0.0.1-SNAPSHOT API'
+com.stefanini.taskmanager
+dao
+dao.enums
+domain
+service
+service.receivers
+'C:/Users/DCUCIUC/Desktop/Repositories/internship-stefanini/TaskManager/App/src/main/java/com/stefanini/taskmanager/ConsoleTaskManagerUI.java'
+'C:/Users/DCUCIUC/Desktop/Repositories/internship-stefanini/TaskManager/App/src/main/java/com/stefanini/taskmanager/Invoker.java'
+'C:/Users/DCUCIUC/Desktop/Repositories/internship-stefanini/TaskManager/App/src/main/java/com/stefanini/taskmanager/TaskManagerApp.java'
+'C:/Users/DCUCIUC/Desktop/Repositories/internship-stefanini/TaskManager/DaoService/src/main/java/dao/DAOFactory.java'
+'C:/Users/DCUCIUC/Desktop/Repositories/internship-stefanini/TaskManager/DaoService/src/main/java/dao/enums/AvaibleDAOFactories.java'
+'C:/Users/DCUCIUC/Desktop/Repositories/internship-stefanini/TaskManager/DaoService/src/main/java/dao/JdbcDAOFactory.java'
+'C:/Users/DCUCIUC/Desktop/Repositories/internship-stefanini/TaskManager/DaoService/src/main/java/dao/TaskDAO.java'
+'C:/Users/DCUCIUC/Desktop/Repositories/internship-stefanini/TaskManager/DaoService/src/main/java/dao/TaskJdbcDAO.java'
+'C:/Users/DCUCIUC/Desktop/Repositories/internship-stefanini/TaskManager/DaoService/src/main/java/dao/UserDAO.java'
+'C:/Users/DCUCIUC/Desktop/Repositories/internship-stefanini/TaskManager/DaoService/src/main/java/dao/UserJdbcDAO.java'
+'C:/Users/DCUCIUC/Desktop/Repositories/internship-stefanini/TaskManager/DaoService/src/main/java/domain/TaskEntity.java'
+'C:/Users/DCUCIUC/Desktop/Repositories/internship-stefanini/TaskManager/DaoService/src/main/java/domain/UserEntity.java'
+'C:/Users/DCUCIUC/Desktop/Repositories/internship-stefanini/TaskManager/DaoService/src/main/java/service/AddTaskCommand.java'
+'C:/Users/DCUCIUC/Desktop/Repositories/internship-stefanini/TaskManager/DaoService/src/main/java/service/Command.java'
+'C:/Users/DCUCIUC/Desktop/Repositories/internship-stefanini/TaskManager/DaoService/src/main/java/service/CreateUserCommand.java'
+'C:/Users/DCUCIUC/Desktop/Repositories/internship-stefanini/TaskManager/DaoService/src/main/java/service/receivers/Task.java'
+'C:/Users/DCUCIUC/Desktop/Repositories/internship-stefanini/TaskManager/DaoService/src/main/java/service/receivers/User.java'
+'C:/Users/DCUCIUC/Desktop/Repositories/internship-stefanini/TaskManager/DaoService/src/main/java/service/ShowAllUsersCommand.java'
+'C:/Users/DCUCIUC/Desktop/Repositories/internship-stefanini/TaskManager/DaoService/src/main/java/service/ShowAllUsersTasksCommand.java'
+C:\Users\DCUCIUC\Desktop\Repositories\internship-stefanini\TaskManager\App\target\classes = 1656395539492
+C:\Users\DCUCIUC\Desktop\Repositories\internship-stefanini\TaskManager\DaoService\target\classes = 1656395539361
+C:\Users\DCUCIUC\.m2\repository\info\picocli\picocli\3.9.6\picocli-3.9.6.jar = 1656063442355
+C:\Users\DCUCIUC\Desktop\Repositories\internship-stefanini\TaskManager\App\src\main\java = 1656069077336
+C:\Users\DCUCIUC\Desktop\Repositories\internship-stefanini\TaskManager\DaoService\src\main\java = 1656071567876
+C:\Users\DCUCIUC\Desktop\Repositories\internship-stefanini\TaskManager\target\site\apidocs\allclasses-frame.html = 1656398518832
+C:\Users\DCUCIUC\Desktop\Repositories\internship-stefanini\TaskManager\target\site\apidocs\allclasses-noframe.html = 1656398518835
+C:\Users\DCUCIUC\Desktop\Repositories\internship-stefanini\TaskManager\target\site\apidocs\constant-values.html = 1656398518534
+C:\Users\DCUCIUC\Desktop\Repositories\internship-stefanini\TaskManager\target\site\apidocs\deprecated-list.html = 1656398518827
+C:\Users\DCUCIUC\Desktop\Repositories\internship-stefanini\TaskManager\target\site\apidocs\help-doc.html = 1656398518849
+C:\Users\DCUCIUC\Desktop\Repositories\internship-stefanini\TaskManager\target\site\apidocs\index-all.html = 1656398518821
+C:\Users\DCUCIUC\Desktop\Repositories\internship-stefanini\TaskManager\target\site\apidocs\index.html = 1656398518839
+C:\Users\DCUCIUC\Desktop\Repositories\internship-stefanini\TaskManager\target\site\apidocs\overview-frame.html = 1656398518447
+C:\Users\DCUCIUC\Desktop\Repositories\internship-stefanini\TaskManager\target\site\apidocs\overview-summary.html = 1656398518845
+C:\Users\DCUCIUC\Desktop\Repositories\internship-stefanini\TaskManager\target\site\apidocs\overview-tree.html = 1656398518813
+C:\Users\DCUCIUC\Desktop\Repositories\internship-stefanini\TaskManager\target\site\apidocs\package-list = 1656398518442
+C:\Users\DCUCIUC\Desktop\Repositories\internship-stefanini\TaskManager\target\site\apidocs\script.js = 1656398518854
+C:\Users\DCUCIUC\Desktop\Repositories\internship-stefanini\TaskManager\target\site\apidocs\stylesheet.css = 1656397140065
