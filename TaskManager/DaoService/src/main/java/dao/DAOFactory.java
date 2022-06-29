@@ -1,6 +1,7 @@
 package dao;
 
 import dao.enums.AvaibleDAOFactories;
+import dao.impl.JdbcDAOFactory;
 
 public abstract class DAOFactory {
 	public abstract UserDAO getUserDAO();

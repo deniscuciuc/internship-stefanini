@@ -1,17 +1,17 @@
 package service;
 
-import service.receivers.Task;
+import service.receivers.TaskService;
 
 public class AddTaskCommand implements Command {
-	Task task;
+	TaskService taskService;
 
-	public AddTaskCommand(Task task) {
-		this.task = task;
+	public AddTaskCommand(TaskService taskService) {
+		this.taskService = taskService;
 	}
 
 	@Override
 	public void execute() {
-		task.addTask();
+		taskService.addTask();
 	}
 
 }

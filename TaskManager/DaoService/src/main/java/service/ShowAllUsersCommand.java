@@ -1,17 +1,17 @@
 package service;
 
-import service.receivers.User;
+import service.receivers.UserService;
 
 public class ShowAllUsersCommand implements Command {
-	User user;
+	private UserService userService;
 	
-	public ShowAllUsersCommand(User user) {
-		this.user = user;
+	public ShowAllUsersCommand(UserService userService) {
+		this.userService = userService;
 	}
 
 	@Override
 	public void execute() {
-		user.showAllUsers();
+		userService.showAllUsers();
 	}
 
 }

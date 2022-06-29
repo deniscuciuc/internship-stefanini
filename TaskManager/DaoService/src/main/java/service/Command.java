@@ -2,5 +2,5 @@ package service;
 
 
 public interface Command {
-	void execute();
+	public void execute();
 }

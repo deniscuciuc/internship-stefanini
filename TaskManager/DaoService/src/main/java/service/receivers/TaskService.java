@@ -4,12 +4,12 @@ import java.util.List;
 import java.util.Scanner;
 
 import dao.DAOFactory;
-import dao.UserJdbcDAO;
 import dao.enums.AvaibleDAOFactories;
+import dao.impl.UserJdbcDAO;
 import domain.TaskEntity;
 import domain.UserEntity;
 
-public class Task {
+public class TaskService {
 	
 	public void addTask() {
 		if (!areUsersCreated()) {
@@ -62,7 +62,7 @@ public class Task {
 	public boolean areUsersCreated() {
 		if (isUsersListEmpty()) {
 			
-			User.readUserDataFromMySQL();
+			UserService.readUserDataFromMySQL();
 			
 			if (isUsersListEmpty()) {
 				

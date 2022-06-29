@@ -5,13 +5,13 @@ import java.util.List;
 import java.util.Scanner;
 
 import dao.DAOFactory;
-import dao.UserJdbcDAO;
 import dao.enums.AvaibleDAOFactories;
+import dao.impl.UserJdbcDAO;
 import domain.TaskEntity;
 import domain.UserEntity;
 
 
-public class User {
+public class UserService {
 	public void createUser() {
 		UserEntity user = getUserDataFromUser();
 		if (user == null) {

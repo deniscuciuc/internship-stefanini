@@ -1,16 +1,16 @@
 package service;
 
-import service.receivers.Task;
+import service.receivers.TaskService;
 
 public class ShowAllUsersTasksCommand implements Command {
-	Task task;
+	private TaskService taskService;
 
-	public ShowAllUsersTasksCommand(Task task) {
-		this.task = task;
+	public ShowAllUsersTasksCommand(TaskService taskService) {
+		this.taskService = taskService;
 	}
 
 	@Override
 	public void execute() {
-		task.showAllUsersTasks();
+		taskService.showAllUsersTasks();
 	}
 }

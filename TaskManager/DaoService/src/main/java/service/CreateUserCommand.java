@@ -1,20 +1,20 @@
 package service;
 
 
-import service.receivers.User;
+import service.receivers.UserService;
 
 public class CreateUserCommand implements Command {
-	User user;
+	private UserService userService;
 	
 	
-	public CreateUserCommand(User user) {
-		this.user = user;
+	public CreateUserCommand(UserService userService) {
+		this.userService = userService;
 	}
 	
 
 	@Override
 	public void execute() {
-		user.createUser();
+		userService.createUser();
 	}
 
 }

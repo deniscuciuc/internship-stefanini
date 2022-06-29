@@ -6,8 +6,8 @@ import service.AddTaskCommand;
 import service.CreateUserCommand;
 import service.ShowAllUsersCommand;
 import service.ShowAllUsersTasksCommand;
-import service.receivers.Task;
-import service.receivers.User;
+import service.receivers.TaskService;
+import service.receivers.UserService;
 
 /**
  * This class represents Console UI for all commands
@@ -16,8 +16,8 @@ import service.receivers.User;
 public class ConsoleTaskManagerUI {
 	
 	private Invoker invoker = new Invoker();
-	private User user = new User();
-	private Task task = new Task();
+	private UserService user = new UserService();
+	private TaskService task = new TaskService();
 	
 	
 	/**

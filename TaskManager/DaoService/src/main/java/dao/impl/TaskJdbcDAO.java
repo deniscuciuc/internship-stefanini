@@ -1,4 +1,4 @@
-package dao;
+package dao.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,48 +7,51 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import dao.enums.AvaibleDAOFactories;
+import dao.TaskDAO;
 import domain.TaskEntity;
 import domain.UserEntity;
 
-public class UserJdbcDAO implements UserDAO {
+public class TaskJdbcDAO implements TaskDAO {
 	private Connection connection = null;
 	private PreparedStatement preparedStatement = null;
 	ResultSet resultSet = null;
 	
-	private static List<UserEntity> users;
+	private static List<TaskEntity> tasks;
 	
-	public UserJdbcDAO() {
+	
+	public TaskJdbcDAO() {
 		
 	}
 	
-	private UserJdbcDAO(List<UserEntity> users) {
-		UserJdbcDAO.users = users;
-	}
-
-	public static List<UserEntity> getUsers() {
-		if (UserJdbcDAO.users == null) {
-			UserJdbcDAO.users = new ArrayList<UserEntity>();
-		}
-		return UserJdbcDAO.users;
+	@SuppressWarnings("unused")
+	private TaskJdbcDAO(List<TaskEntity> tasks) {
+		TaskJdbcDAO.tasks = tasks;
 	}
 	
+
 	private Connection getConnection() throws SQLException {
 		Connection conn = JdbcDAOFactory.getInstance().getConnection();
 		return conn;
 	}
+	
+	public static List<TaskEntity> getTasks() {
+		if (TaskJdbcDAO.tasks == null) {
+			TaskJdbcDAO.tasks = new ArrayList<TaskEntity>();
+		}
+		return TaskJdbcDAO.tasks;
+	}
 
 	@Override
-	public void createUser(UserEntity user) {
+	public void addTask(UserEntity user, TaskEntity task) {
 		try {
-			String query = "INSERT INTO users(UserName, FirstName, LastName) VALUES (?, ?, ?)";
+			String query = "INSERT INTO tasks(UserId, Title, Describtion) VALUES (?, ?, ?)";
 			connection = getConnection();
 			preparedStatement = connection.prepareStatement(query);
-			preparedStatement.setString(1, user.getUserName());
-			preparedStatement.setString(2,  user.getFirstName());
-			preparedStatement.setString(3,  user.getLastName());
+			preparedStatement.setInt(1, user.getId());
+			preparedStatement.setString(2,  task.getTitle());
+			preparedStatement.setString(3,  task.getDescribtion());
 			preparedStatement.executeUpdate();
-			System.out.println("User added to MYSQL database succsesfully");
+			System.out.println("Task added to MYSQL database succsesfully");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -61,20 +64,16 @@ public class UserJdbcDAO implements UserDAO {
 		}
 	}
 
-	
 	@Override
-	public void getAllUsers() {
+	public UserEntity getAllUsersTasks(UserEntity user) {
 		try {
-			String query = "SELECT * FROM users";
+			String query = "SELECT * FROM tasks WHERE UserId = " + user.getId();
 			connection = getConnection();
 			preparedStatement = connection.prepareStatement(query);
 			resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
-				UserEntity user = new UserEntity(resultSet.getInt("Id"), resultSet.getString("UserName"),
-						   resultSet.getString("FirstName"), resultSet.getString("LastName"),
-						   new ArrayList<TaskEntity>());
-				user = DAOFactory.getDAOFactory(AvaibleDAOFactories.JDBC).getTaskDAO().getAllUsersTasks(user);
-				users.add(user);
+				user.getTasks().add(new TaskEntity(resultSet.getInt("Id"), resultSet.getString("Title"),
+								   resultSet.getString("Describtion")));
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();
@@ -86,5 +85,6 @@ public class UserJdbcDAO implements UserDAO {
 				e.printStackTrace();
 			}
 		}
+		return user;
 	}
 }

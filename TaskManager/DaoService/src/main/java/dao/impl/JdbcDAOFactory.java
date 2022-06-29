@@ -1,11 +1,15 @@
-package dao;
+package dao.impl;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import dao.DAOFactory;
+import dao.TaskDAO;
+import dao.UserDAO;
 
-class JdbcDAOFactory extends DAOFactory {
+
+public class JdbcDAOFactory extends DAOFactory {
 	public static final String DRIVER_CLASS_NAME = "com.mysql.cj.jdbc.Driver";
 	public static final String URL = "jdbc:mysql://localhost:3306/task_manager";
 	public static final String USER = "root";
@@ -13,7 +17,7 @@ class JdbcDAOFactory extends DAOFactory {
 	
 	private static JdbcDAOFactory connectionFactory = null;
 	
-	JdbcDAOFactory() {
+	public JdbcDAOFactory() {
 		try {
 			Class.forName(DRIVER_CLASS_NAME);
 		} catch (ClassNotFoundException e) {
