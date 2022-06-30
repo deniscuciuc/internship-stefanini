@@ -11,14 +11,8 @@
   	<module>App</module>
   	<module>DaoService</module>
   </modules>
- 
-  <dependencies>
-  	<dependency>
-	    <groupId>info.picocli</groupId>
-	    <artifactId>picocli</artifactId>
-	    <version>3.9.6</version>
-	</dependency>
-	
+  
+	<dependencies>
 	<dependency>
 	    <groupId>junit</groupId>
 	    <artifactId>junit</artifactId>
