@@ -1,10 +1,11 @@
 package dao;
 
 
+import java.util.List;
+
 import domain.TaskEntity;
-import domain.UserEntity;
 
 public interface TaskDAO {
-	void addTask(UserEntity user, TaskEntity task);
-	UserEntity getAllUsersTasks(UserEntity user);
+	void createTask(TaskEntity task);
+	List<TaskEntity> getAllUsersTasks(int userId);
 }
