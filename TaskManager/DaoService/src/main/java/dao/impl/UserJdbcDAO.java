@@ -24,6 +24,7 @@ public class UserJdbcDAO implements UserDAO {
 		
 	}
 	
+	@SuppressWarnings("unused")
 	private UserJdbcDAO(List<UserEntity> users) {
 		UserJdbcDAO.users = users;
 	}
@@ -42,51 +43,32 @@ public class UserJdbcDAO implements UserDAO {
 
 	@Override
 	public void createUser(UserEntity user) {
-		try {
-			String query = "INSERT INTO users(UserName, FirstName, LastName) VALUES (?, ?, ?)";
-			connection = getConnection();
-			preparedStatement = connection.prepareStatement(query);
-			preparedStatement.setString(1, user.getUserName());
-			preparedStatement.setString(2,  user.getFirstName());
-			preparedStatement.setString(3,  user.getLastName());
-			preparedStatement.executeUpdate();
+		String query = "INSERT INTO users(UserName, FirstName, LastName) VALUES (?, ?, ?)";
+		try (Connection connection = getConnection(); PreparedStatement  stmt = connection.prepareStatement(query)) {
+			stmt.setString(1, user.getUserName());
+			stmt.setString(2,  user.getFirstName());
+			stmt.setString(3,  user.getLastName());
+			stmt.executeUpdate();
 			System.out.println("User added to MYSQL database succsesfully");
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-			try {
-				if (preparedStatement != null) preparedStatement.close();
-				if (connection != null) connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
 		}
 	}
 
 	
 	@Override
-	public void getAllUsers() {
-		try {
-			String query = "SELECT * FROM users";
-			connection = getConnection();
-			preparedStatement = connection.prepareStatement(query);
-			resultSet = preparedStatement.executeQuery();
-			while (resultSet.next()) {
-				UserEntity user = new UserEntity(resultSet.getInt("Id"), resultSet.getString("UserName"),
-						   resultSet.getString("FirstName"), resultSet.getString("LastName"),
-						   new ArrayList<TaskEntity>());
-				user = DAOFactory.getDAOFactory(AvaibleDAOFactories.JDBC).getTaskDAO().getAllUsersTasks(user);
-				users.add(user);
+	public List<UserEntity> getAllUsers() {
+		String query = "SELECT * FROM users";
+		try (Connection connection = getConnection(); PreparedStatement stmt = connection.prepareStatement(query); ResultSet rs = stmt.executeQuery()) {
+			List<UserEntity> users = new ArrayList<UserEntity>();
+			while (rs.next()) {
+				users.add(new UserEntity(rs.getInt("Id"), rs.getString("UserName"),
+						rs.getString("FirstName"), rs.getString("LastName"),
+						  DAOFactory.getDAOFactory(AvaibleDAOFactories.JDBC).getTaskDAO().getAllUsersTasks(rs.getInt("Id"))));
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();
-		} finally {
-			try {
-				if (preparedStatement != null) preparedStatement.close();
-				if (connection != null) connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
 		}
+		return users;
 	}
 }

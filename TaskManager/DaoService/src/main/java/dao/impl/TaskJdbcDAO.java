@@ -9,12 +9,8 @@ import java.util.List;
 
 import dao.TaskDAO;
 import domain.TaskEntity;
-import domain.UserEntity;
 
 public class TaskJdbcDAO implements TaskDAO {
-	private Connection connection = null;
-	private PreparedStatement preparedStatement = null;
-	ResultSet resultSet = null;
 	
 	private static List<TaskEntity> tasks;
 	
@@ -30,8 +26,8 @@ public class TaskJdbcDAO implements TaskDAO {
 	
 
 	private Connection getConnection() throws SQLException {
-		Connection conn = JdbcDAOFactory.getInstance().getConnection();
-		return conn;
+		Connection connection = JdbcDAOFactory.getInstance().getConnection();
+		return connection;
 	}
 	
 	public static List<TaskEntity> getTasks() {
@@ -42,49 +38,30 @@ public class TaskJdbcDAO implements TaskDAO {
 	}
 
 	@Override
-	public void addTask(UserEntity user, TaskEntity task) {
-		try {
-			String query = "INSERT INTO tasks(UserId, Title, Describtion) VALUES (?, ?, ?)";
-			connection = getConnection();
-			preparedStatement = connection.prepareStatement(query);
-			preparedStatement.setInt(1, user.getId());
-			preparedStatement.setString(2,  task.getTitle());
-			preparedStatement.setString(3,  task.getDescribtion());
-			preparedStatement.executeUpdate();
+	public void createTask(TaskEntity task) {
+		String query = "INSERT INTO tasks(UserId, Title, Describtion) VALUES (?, ?, ?)";
+		try (Connection connection = getConnection(); PreparedStatement  stmt = connection.prepareStatement(query)) {
+			stmt.setInt(1, task.getUserId());
+			stmt.setString(2,  task.getTitle());
+			stmt.setString(3,  task.getDescribtion());
+			stmt.executeUpdate();
 			System.out.println("Task added to MYSQL database succsesfully");
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-			try {
-				if (preparedStatement != null) preparedStatement.close();
-				if (connection != null) connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
 		}
 	}
 
 	@Override
-	public UserEntity getAllUsersTasks(UserEntity user) {
-		try {
-			String query = "SELECT * FROM tasks WHERE UserId = " + user.getId();
-			connection = getConnection();
-			preparedStatement = connection.prepareStatement(query);
-			resultSet = preparedStatement.executeQuery();
-			while (resultSet.next()) {
-				user.getTasks().add(new TaskEntity(resultSet.getInt("Id"), resultSet.getString("Title"),
-								   resultSet.getString("Describtion")));
+	public List<TaskEntity> getAllUsersTasks(int userId) {
+		String query = "SELECT * FROM tasks WHERE UserId = " + userId;
+		try (Connection connection = getConnection(); PreparedStatement stmt = connection.prepareStatement(query); ResultSet rs = stmt.executeQuery()) {
+			List<TaskEntity> tasks = new ArrayList<TaskEntity>();
+			while (rs.next()) {
+				tasks.add(new TaskEntity(userId, rs.getInt("Id"), rs.getString("Title"), rs.getString("Describtion")));
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();
-		} finally {
-			try {
-				if (preparedStatement != null) preparedStatement.close();
-				if (connection != null) connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
 		}
-		return user;
+		return tasks;
 	}
 }
