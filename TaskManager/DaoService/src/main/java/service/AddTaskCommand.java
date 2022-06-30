@@ -3,7 +3,7 @@ package service;
 import service.receivers.TaskService;
 
 public class AddTaskCommand implements Command {
-	TaskService taskService;
+	private TaskService taskService;
 
 	public AddTaskCommand(TaskService taskService) {
 		this.taskService = taskService;
