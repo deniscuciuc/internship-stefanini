@@ -4,14 +4,20 @@ package service.receivers.impl;
 import java.util.List;
 import java.util.Scanner;
 
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import dao.DAOFactory;
 import dao.enums.AvaibleDAOFactories;
-import dao.impl.UserJdbcDAO;
 import domain.TaskEntity;
 import domain.UserEntity;
 import service.receivers.TaskService;
+import service.receivers.exceptions.InvalidUserException;
 
 public class TaskServiceImpl implements TaskService {
+	
+	private static final Logger logger = LogManager.getLogger(TaskServiceImpl.class);  
 	
 	@Override
 	public void addTask() {
@@ -26,27 +32,26 @@ public class TaskServiceImpl implements TaskService {
 		if (!areUsersCreated()) {
 			return;
 		}
-		UserEntity user = findUserByUserName(getUserNameFromKeyboard());
-		
-		if (user.getNumberOfTasks() == 0) {
-			showUserHaveNoTasksErrorMessage();
-			return;
+		try {
+			UserEntity user = findUserByUserName(getUserNameFromKeyboard());
+			checkIfSuchUserExist(user);
+			displayTasks(user);
+		} catch (InvalidUserException e) {
+			logger.error("Such user dont exist!", e);
 		}
-		
-		displayTasks(user);
  	}
 	
 	
 	private void generateTask() {
 		UserEntity user = findUserByUserName(getUserNameFromKeyboard());
-		
-		if (user == null) {
-			showNoSuchUserErrorMessage();
-		} else {
+		try {
+			checkIfSuchUserExist(user);
 			TaskEntity task = getTaskDataFromUser();
 			task.setId(user.getId());
 			saveUsersTask(user, task);
 			saveTaskMySQL(task);
+		} catch(InvalidUserException e) {
+			System.out.println(e);
 		}
 	}
 	
@@ -64,16 +69,9 @@ public class TaskServiceImpl implements TaskService {
 	}
 	
 	public boolean areUsersCreated() {
-		if (isUsersListEmpty()) {
-			
-			UserServiceImpl.readUserDataFromMySQL();
-			
-			if (isUsersListEmpty()) {
-				
-				showNoUsersAlreadyCreatedErrorMessage();
-				return false;
-				
-			}
+		List<UserEntity> users = UserServiceImpl.getAllUsersFromMySQL();
+		if (users.isEmpty()) {
+			return false;
 		}
 		return true;
 	}
@@ -89,7 +87,7 @@ public class TaskServiceImpl implements TaskService {
 	}
 	
 	private UserEntity findUserByUserName(String userName) {
-		List<UserEntity> users = UserJdbcDAO.getUsers();
+		List<UserEntity> users = UserServiceImpl.getAllUsersFromMySQL();
 		for (UserEntity user : users) {
 			if (user.getUserName().equals(userName)) {
 				return user;
@@ -118,19 +116,13 @@ public class TaskServiceImpl implements TaskService {
 		DAOFactory.getDAOFactory(AvaibleDAOFactories.JDBC).getTaskDAO().createTask(task);
 	}
 	
-	private boolean isUsersListEmpty() {
-		return UserJdbcDAO.getUsers().isEmpty();
-	}
+//	private boolean isUsersListEmpty() {
+//		return UserJdbcDAO.getUsers().isEmpty();
+//	}
 	
-	private void showNoUsersAlreadyCreatedErrorMessage() {
-		System.out.println("No users already created! Select option 1.");
-	}
-	
-	private void showNoSuchUserErrorMessage() {
-		System.out.println("No such user! Try again");
-	}
-	
-	private void showUserHaveNoTasksErrorMessage() {
-		System.out.println("User have no tasks!");
+	private void checkIfSuchUserExist(UserEntity user) throws InvalidUserException {
+		if (user == null) {
+			throw new InvalidUserException("No such user");
+		}
 	}
 }

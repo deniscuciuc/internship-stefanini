@@ -18,7 +18,6 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void createUser() {
 		UserEntity user = getUserDataFromUser();
-		saveUserList(user);
 		saveUserMySQL(user);
 	}
 	
@@ -26,7 +25,7 @@ public class UserServiceImpl implements UserService {
 	public void showAllUsers() {
 		try {
 			checkIfUsersWasAlreadyCreated();
-			List<UserEntity> users = UserJdbcDAO.getUsers();
+			List<UserEntity> users = getAllUsersFromMySQL();
 			for (UserEntity user : users) {
 				System.out.println("Id = " + user.getId() + " | Username = " + user.getUserName() +  " | Full name = " + user.getFullName() + 
 								   " | Number of tasks = " + user.getNumberOfTasks());
@@ -36,8 +35,8 @@ public class UserServiceImpl implements UserService {
 		}
 	}
 	
-	public static void readUserDataFromMySQL() {
-		DAOFactory.getDAOFactory(AvaibleDAOFactories.JDBC).getUserDAO().getAllUsers();
+	public static List<UserEntity> getAllUsersFromMySQL() {
+		return DAOFactory.getDAOFactory(AvaibleDAOFactories.JDBC).getUserDAO().getAllUsers();
 	}
 
 	@SuppressWarnings("resource")
@@ -66,25 +65,18 @@ public class UserServiceImpl implements UserService {
 		return null;
 	}
 	
+	private void saveUserMySQL(UserEntity user) {
+		DAOFactory.getDAOFactory(AvaibleDAOFactories.JDBC).getUserDAO().createUser(user);
+	}
+	
 	private boolean userNameAlreadyExists(String userName) {
-		List<UserEntity> users = UserJdbcDAO.getUsers();
-		if (users.isEmpty()) {
-			readUserDataFromMySQL();
-		}
+		List<UserEntity> users = getAllUsersFromMySQL();
 		for (UserEntity user : users) {
 			if (user.getUserName().equals(userName)) {
 				return true;
 			}
 		}
 		return false;
-	}
-	
-	private void saveUserList(UserEntity user) {
-		UserJdbcDAO.getUsers().add(user);
-	}
-	
-	private void saveUserMySQL(UserEntity user) {
-		DAOFactory.getDAOFactory(AvaibleDAOFactories.JDBC).getUserDAO().createUser(user);
 	}
 	
 	private void validateUserName(String userName) throws InvalidUserException {
@@ -94,11 +86,13 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	private void checkIfUsersWasAlreadyCreated() throws InvalidUserException {
-		if (UserJdbcDAO.getUsers().isEmpty()) {
-			readUserDataFromMySQL();
-			if (UserJdbcDAO.getUsers().isEmpty()) {
-				throw new InvalidUserException("No users already created!");
-			}
+		List<UserEntity> users = getAllUsersFromMySQL();
+		if (users.isEmpty()) {
+			throw new InvalidUserException("Users were not created yet!");
 		}
 	}
+	
+//	private void saveUserList(UserEntity user) {
+//		UserJdbcDAO.getUsers().add(user);
+//	}
 }
