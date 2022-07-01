@@ -3,6 +3,8 @@
 	<name>App</name>
 	<comment></comment>
 	<projects>
+		<project>DaoService</project>
+		<project>TaskManager</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
