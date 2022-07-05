@@ -1,4 +1,4 @@
-package dao.impl;
+package dao.impl.jdbc;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -29,7 +29,7 @@ public class TaskJdbcDAO implements TaskDAO {
 		Connection connection = JdbcDAOFactory.getInstance().getConnection();
 		return connection;
 	}
-	
+
 	public static List<TaskEntity> getTasks() {
 		if (TaskJdbcDAO.tasks == null) {
 			TaskJdbcDAO.tasks = new ArrayList<TaskEntity>();

@@ -1,4 +1,4 @@
-package dao.impl;
+package dao.impl.jdbc;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,8 +9,7 @@ import java.util.List;
 
 import dao.DAOFactory;
 import dao.UserDAO;
-import dao.enums.AvaibleDAOFactories;
-import domain.TaskEntity;
+import dao.enums.AvailableDAOFactories;
 import domain.UserEntity;
 
 public class UserJdbcDAO implements UserDAO {
@@ -64,7 +63,7 @@ public class UserJdbcDAO implements UserDAO {
 			while (rs.next()) {
 				users.add(new UserEntity(rs.getInt("Id"), rs.getString("UserName"),
 						rs.getString("FirstName"), rs.getString("LastName"),
-						  DAOFactory.getDAOFactory(AvaibleDAOFactories.JDBC).getTaskDAO().getAllUsersTasks(rs.getInt("Id"))));
+						  DAOFactory.getDAOFactory(AvailableDAOFactories.JDBC).getTaskDAO().getAllUsersTasks(rs.getInt("Id"))));
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();
