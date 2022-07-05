@@ -5,8 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import dao.DAOFactory;
-import dao.enums.AvaibleDAOFactories;
-import dao.impl.UserJdbcDAO;
+import dao.enums.AvailableDAOFactories;
 import domain.TaskEntity;
 import domain.UserEntity;
 import service.receivers.UserService;
@@ -36,7 +35,7 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	public static List<UserEntity> getAllUsersFromMySQL() {
-		return DAOFactory.getDAOFactory(AvaibleDAOFactories.JDBC).getUserDAO().getAllUsers();
+		return DAOFactory.getDAOFactory(AvailableDAOFactories.JDBC).getUserDAO().getAllUsers();
 	}
 
 	@SuppressWarnings("resource")
@@ -66,7 +65,7 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	private void saveUserMySQL(UserEntity user) {
-		DAOFactory.getDAOFactory(AvaibleDAOFactories.JDBC).getUserDAO().createUser(user);
+		DAOFactory.getDAOFactory(AvailableDAOFactories.JDBC).getUserDAO().createUser(user);
 	}
 	
 	private boolean userNameAlreadyExists(String userName) {

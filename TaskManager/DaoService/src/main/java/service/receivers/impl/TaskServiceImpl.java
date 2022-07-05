@@ -9,7 +9,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import dao.DAOFactory;
-import dao.enums.AvaibleDAOFactories;
+import dao.enums.AvailableDAOFactories;
 import domain.TaskEntity;
 import domain.UserEntity;
 import service.receivers.TaskService;
@@ -37,7 +37,7 @@ public class TaskServiceImpl implements TaskService {
 			checkIfSuchUserExist(user);
 			displayTasks(user);
 		} catch (InvalidUserException e) {
-			logger.error("Such user dont exist!", e);
+			logger.error("Such user don't exist!", e);
 		}
  	}
 	
@@ -113,7 +113,7 @@ public class TaskServiceImpl implements TaskService {
 	}
 	
 	private void saveTaskMySQL(TaskEntity task) {
-		DAOFactory.getDAOFactory(AvaibleDAOFactories.JDBC).getTaskDAO().createTask(task);
+		DAOFactory.getDAOFactory(AvailableDAOFactories.JDBC).getTaskDAO().createTask(task);
 	}
 	
 //	private boolean isUsersListEmpty() {
