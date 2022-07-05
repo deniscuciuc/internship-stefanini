@@ -1,9 +1,8 @@
 package com.stefanini.taskmanager;
 
 /**
- * Main class wich call UI
+ * Main class that can call a UI (console or another)
  * @author dcuciuc
- *
  */
 
 public class TaskManagerApp {
