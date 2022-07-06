@@ -10,7 +10,8 @@ import java.util.List;
 import dao.DAOFactory;
 import dao.UserDAO;
 import dao.enums.AvailableDAOFactories;
-import domain.UserEntity;
+import domain.beans.UserBean;
+import domain.entities.UserEntity;
 
 public class UserJdbcDAO implements UserDAO {
 	private Connection connection = null;
@@ -41,7 +42,7 @@ public class UserJdbcDAO implements UserDAO {
 	}
 
 	@Override
-	public void createUser(UserEntity user) {
+	public void createUser(UserBean user) {
 		String query = "INSERT INTO users(UserName, FirstName, LastName) VALUES (?, ?, ?)";
 		try (Connection connection = getConnection(); PreparedStatement  stmt = connection.prepareStatement(query)) {
 			stmt.setString(1, user.getUserName());

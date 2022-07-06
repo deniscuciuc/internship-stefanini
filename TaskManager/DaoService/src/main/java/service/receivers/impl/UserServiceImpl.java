@@ -1,13 +1,15 @@
 package service.receivers.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 import dao.DAOFactory;
 import dao.enums.AvailableDAOFactories;
-import domain.TaskEntity;
-import domain.UserEntity;
+import dao.impl.hibernate.util.HibernateFactory;
+import domain.beans.TaskBean;
+import domain.beans.UserBean;
+import domain.entities.TaskEntity;
+import domain.entities.UserEntity;
+import org.hibernate.Session;
 import service.receivers.UserService;
 import service.receivers.exceptions.InvalidUserException;
 
@@ -16,82 +18,56 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	public void createUser() {
-		UserEntity user = getUserDataFromUser();
-		saveUserMySQL(user);
+		UserBean user = getUserDataFromConsole();
+		saveUserHibernateMySQL(user);
 	}
-	
+
+	@Override
+	public void createUserWithTask() {
+		UserBean user = getUserDataFromConsole();
+		TaskBean task = getTaskDataFromConsole();
+		task.setUser(user);
+		user.getTasks().add(task);
+		saveUserHibernateMySQL(user);
+	}
+
 	@Override
 	public void showAllUsers() {
-		try {
-			checkIfUsersWasAlreadyCreated();
-			List<UserEntity> users = getAllUsersFromMySQL();
-			for (UserEntity user : users) {
-				System.out.println("Id = " + user.getId() + " | Username = " + user.getUserName() +  " | Full name = " + user.getFullName() + 
-								   " | Number of tasks = " + user.getNumberOfTasks());
-			}
-		} catch (InvalidUserException e) {
-			System.out.println(e);
-		}
-	}
-	
-	public static List<UserEntity> getAllUsersFromMySQL() {
-		return DAOFactory.getDAOFactory(AvailableDAOFactories.JDBC).getUserDAO().getAllUsers();
+
 	}
 
 	@SuppressWarnings("resource")
-	private UserEntity getUserDataFromUser() {
+	private UserBean getUserDataFromConsole() {
 		Scanner scanner = new Scanner(System.in);
 		
 		System.out.print("Username: ");
 		String userName = scanner.nextLine();
-		
-		try {
-			validateUserName(userName);
-			
-			System.out.print("First name: ");
-			String firstName = scanner.nextLine();
-			
-			System.out.print("Last name: ");
-			String lastName = scanner.nextLine();
-			
-			
-			List<TaskEntity> tasks = new ArrayList<TaskEntity>();
-			
-			return new UserEntity(firstName, lastName, userName, tasks);
-		} catch (InvalidUserException e) {
-			System.out.println(e);
-		}
-		return null;
+
+		System.out.print("First name: ");
+		String firstName = scanner.nextLine();
+
+		System.out.print("Last name: ");
+		String lastName = scanner.nextLine();
+
+
+		Set<TaskBean> tasks = new HashSet<TaskBean>();
+
+		return new UserBean(firstName, lastName, userName, tasks);
 	}
-	
-	private void saveUserMySQL(UserEntity user) {
-		DAOFactory.getDAOFactory(AvailableDAOFactories.JDBC).getUserDAO().createUser(user);
+
+	private TaskBean getTaskDataFromConsole() {
+		Scanner scanner = new Scanner(System.in);
+
+		System.out.print("Task title: ");
+		String title = scanner.nextLine();
+
+		System.out.print("Task description: ");
+		String description = scanner.nextLine();
+
+		return new TaskBean(title, description);
 	}
-	
-	private boolean userNameAlreadyExists(String userName) {
-		List<UserEntity> users = getAllUsersFromMySQL();
-		for (UserEntity user : users) {
-			if (user.getUserName().equals(userName)) {
-				return true;
-			}
-		}
-		return false;
+
+	private void saveUserHibernateMySQL(UserBean user) {
+		DAOFactory.getDAOFactory(AvailableDAOFactories.HIBERNATE).getUserDAO().createUser(user);
 	}
-	
-	private void validateUserName(String userName) throws InvalidUserException {
-			if (userNameAlreadyExists(userName) ) {
-				throw new InvalidUserException("Username already exists!");
-			}
-	}
-	
-	private void checkIfUsersWasAlreadyCreated() throws InvalidUserException {
-		List<UserEntity> users = getAllUsersFromMySQL();
-		if (users.isEmpty()) {
-			throw new InvalidUserException("Users were not created yet!");
-		}
-	}
-	
-//	private void saveUserList(UserEntity user) {
-//		UserJdbcDAO.getUsers().add(user);
-//	}
 }

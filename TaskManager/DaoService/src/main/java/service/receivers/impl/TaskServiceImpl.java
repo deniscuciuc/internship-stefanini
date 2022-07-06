@@ -10,8 +10,8 @@ import org.apache.logging.log4j.Logger;
 
 import dao.DAOFactory;
 import dao.enums.AvailableDAOFactories;
-import domain.TaskEntity;
-import domain.UserEntity;
+import domain.entities.TaskEntity;
+import domain.entities.UserEntity;
 import service.receivers.TaskService;
 import service.receivers.exceptions.InvalidUserException;
 
@@ -21,15 +21,15 @@ public class TaskServiceImpl implements TaskService {
 	
 	@Override
 	public void addTask() {
-		if (!areUsersCreated()) {
+		/*if (!areUsersCreated()) {
 			return;
 		}
-		generateTask();
+		generateTask();*/
 	}
 	
 	@Override
 	public void showAllUsersTasks() {
-		if (!areUsersCreated()) {
+		/*if (!areUsersCreated()) {
 			return;
 		}
 		try {
@@ -38,11 +38,11 @@ public class TaskServiceImpl implements TaskService {
 			displayTasks(user);
 		} catch (InvalidUserException e) {
 			logger.error("Such user don't exist!", e);
-		}
+		}*/
  	}
 	
 	
-	private void generateTask() {
+	/*private void generateTask() {
 		UserEntity user = findUserByUserName(getUserNameFromKeyboard());
 		try {
 			checkIfSuchUserExist(user);
@@ -63,7 +63,7 @@ public class TaskServiceImpl implements TaskService {
 		for (TaskEntity task : tasks) {
 			System.out.println("\n\nTask " + taskCounter);
 			System.out.println("Title: " + task.getTitle());
-			System.out.print("Describtion: " + task.getDescribtion());
+			System.out.print("Describtion: " + task.getDescription());
 			taskCounter++;
 		}
 	}
@@ -124,5 +124,5 @@ public class TaskServiceImpl implements TaskService {
 		if (user == null) {
 			throw new InvalidUserException("No such user");
 		}
-	}
+	}*/
 }

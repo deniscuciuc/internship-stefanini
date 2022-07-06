@@ -8,6 +8,7 @@ package service.receivers;
  *
  */
 public interface UserService {
-	public void createUser();
-	public void showAllUsers();
+	void createUser();
+	void createUserWithTask();
+	void showAllUsers();
 }

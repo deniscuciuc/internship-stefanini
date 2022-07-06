@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dao.TaskDAO;
-import domain.TaskEntity;
+import domain.entities.TaskEntity;
 
 public class TaskJdbcDAO implements TaskDAO {
 	
@@ -43,7 +43,7 @@ public class TaskJdbcDAO implements TaskDAO {
 		try (Connection connection = getConnection(); PreparedStatement  stmt = connection.prepareStatement(query)) {
 			stmt.setInt(1, task.getUserId());
 			stmt.setString(2,  task.getTitle());
-			stmt.setString(3,  task.getDescribtion());
+			stmt.setString(3,  task.getDescription());
 			stmt.executeUpdate();
 			System.out.println("Task added to MYSQL database succsesfully");
 		} catch (SQLException e) {
