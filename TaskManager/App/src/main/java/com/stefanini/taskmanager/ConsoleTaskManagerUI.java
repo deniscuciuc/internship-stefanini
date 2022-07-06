@@ -2,10 +2,7 @@ package com.stefanini.taskmanager;
 
 import java.util.Scanner;
 
-import service.AddTaskCommand;
-import service.CreateUserCommand;
-import service.ShowAllUsersCommand;
-import service.ShowAllUsersTasksCommand;
+import service.*;
 import service.receivers.impl.TaskServiceImpl;
 import service.receivers.impl.UserServiceImpl;
 
@@ -22,7 +19,8 @@ public class ConsoleTaskManagerUI {
 	
 	
 	/**
-	 * Display console user interface and asks user for an option, then will execute selected command by calling private methods for each option
+	 * Display console user interface and asks user for an option.
+	 * Then will execute selected command by calling private methods for each option
 	 */
 	public void launchUI() {
 		Scanner scanner = new Scanner(System.in);
@@ -36,15 +34,18 @@ public class ConsoleTaskManagerUI {
 					createUser();
 					break;
 				case 2:
-					showAllUsers();
+					createUserWithTask();
 					break;
 				case 3:
-					addTask();
+					showAllUsers();
 					break;
 				case 4:
-					showAllUsersTasks();
+					addTask();
 					break;
 				case 5:
+					showAllUsersTasks();
+					break;
+				case 6:
 					System.out.println("Exiting...");
 					return;
 				default:
@@ -52,20 +53,26 @@ public class ConsoleTaskManagerUI {
 					break;
 			}
 			System.out.print("Select option: ");
-		} while (userChoice != 5);
+		} while (userChoice != 6);
 	}
 	
 	private void showMenu() {
 		System.out.println("1. Create user");
-		System.out.println("2. Show all users");
-		System.out.println("3. Add task to the user");
-		System.out.println("4. Show user's tasks");
-		System.out.println("5. Save and exit");
+		System.out.println("2. Create user and give him a task");
+		System.out.println("3. Show all users");
+		System.out.println("4. Add task to the user");
+		System.out.println("5. Show user's tasks");
+		System.out.println("6. Save and exit");
 		System.out.print("Select option: ");
 	}
 	
 	private void createUser() {
 		invoker.setCommand(new CreateUserCommand(user));
+		invoker.executeCommand();
+	}
+
+	private void createUserWithTask() {
+		invoker.setCommand(new CreateUserWithTaskCommand(user));
 		invoker.executeCommand();
 	}
 	
