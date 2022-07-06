@@ -3,7 +3,8 @@ package com.stefanini.taskmanager;
 import service.Command;
 
 /**
- * Simple invoker class that will be used only in client class
+ * Simple invoker class that will be used only in client class to define and call a specific command
+ * @author dcuciuc
  */
 public class Invoker {
 	private Command action;
