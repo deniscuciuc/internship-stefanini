@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "https://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="domain.beans">
+    <class name="UserBean" table="users" >
+        <id name="id" type="int">
+            <column name="user_id" />
+            <generator class="identity" />
+        </id>
+        <property name="firstName" type="string">
+            <column name="firstName" />
+        </property>
+        <property name="lastName" type="string">
+            <column name="lastName" />
+        </property>
+        <property name="userName" type="string" unique="true">
+            <column name="userName" />
+        </property>
+        <set name="tasks" table="tasks" fetch="select" cascade="all">
+            <key>
+                <column name="user_id" not-null="true"></column>
+            </key>
+            <one-to-many class="TaskBean"/>
+        </set>
+    </class>
+
+</hibernate-mapping>
+

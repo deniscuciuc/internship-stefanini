@@ -1,27 +1,35 @@
-package domain;
+package domain.beans;
+
+
 
 import java.util.List;
+import java.util.Set;
 
-public class UserEntity {
+/**
+ * Simple user bean class, that is used for hibernate mappings configuration. Allows not to use annotations.
+ * Used one-to-many relationship with tasks.
+ * @author dcuciuc
+ */
+public class UserBean {
 	private int id;
 	private String firstName;
     private String lastName;
     private String userName;
-    private List<TaskEntity> tasks;
-    
-    public UserEntity() {
-    	
+    private Set<TaskBean> tasks;
+
+    public UserBean() {
+
     }
 
-    public UserEntity(int id, String firstName, String lastName, String userName, List<TaskEntity> tasks) {
+    public UserBean(int id, String firstName, String lastName, String userName, Set<TaskBean> tasks) {
     	this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;
         this.tasks = tasks;
     }
-    
-    public UserEntity(String firstName, String lastName, String userName, List<TaskEntity> tasks) {
+
+    public UserBean(String firstName, String lastName, String userName, Set<TaskBean> tasks) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;
@@ -65,11 +73,11 @@ public class UserEntity {
         this.userName = userName;
     }
 
-    public List<TaskEntity> getTasks() {
+    public Set<TaskBean> getTasks() {
         return tasks;
     }
 
-    public void setTasks(List<TaskEntity> tasks) {
+    public void setTasks(Set<TaskBean> tasks) {
         this.tasks = tasks;
     }
 
