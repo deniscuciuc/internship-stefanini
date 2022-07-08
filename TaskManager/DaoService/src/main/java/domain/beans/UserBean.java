@@ -2,7 +2,8 @@ package domain.beans;
 
 
 
-import java.util.List;
+
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -21,6 +22,7 @@ public class UserBean {
 
     }
 
+
     public UserBean(int id, String firstName, String lastName, String userName, Set<TaskBean> tasks) {
     	this.id = id;
         this.firstName = firstName;
@@ -29,25 +31,28 @@ public class UserBean {
         this.tasks = tasks;
     }
 
+
     public UserBean(String firstName, String lastName, String userName, Set<TaskBean> tasks) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;
         this.tasks = tasks;
     }
-    
+
+    public UserBean(String firstName, String lastName, String userName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.userName = userName;
+    }
+
 
     public int getId() {
 		return id;
 	}
 
-
-
 	public void setId(int id) {
 		this.id = id;
 	}
-
-
 
 	public String getFirstName() {
         return firstName;
@@ -87,5 +92,16 @@ public class UserBean {
 
     public int getNumberOfTasks() {
         return tasks.size();
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", userName='" + userName + '\'' +
+                ", numberOfTasks='" + tasks.size() + '\'' +
+                '}';
     }
 }

@@ -1,28 +1,27 @@
 package domain.entities;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name = "users")
+@Table(name = "users", uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id"})})
 public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
+    @Column(name = "user_id", nullable = false)
     private int id;
 
-    @Column(name = "firstName")
+    @Column(name = "firstName", length = 20, nullable = false)
 	private String firstName;
 
-    @Column(name = "lastName")
+    @Column(name = "lastName", length = 20, nullable = false)
     private String lastName;
 
-    @Column(name = "userName")
+    @Column(name = "userName", length = 20, nullable = false)
     private String userName;
 
-    @OneToMany(mappedBy = "UserEntity")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Set<TaskEntity> tasks;
     
     public UserEntity() {
@@ -95,5 +94,16 @@ public class UserEntity {
 
     public int getNumberOfTasks() {
         return tasks.size();
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", userName='" + userName + '\'' +
+                ", numberOfTasks='" + tasks.size() + '\'' +
+                '}';
     }
 }
