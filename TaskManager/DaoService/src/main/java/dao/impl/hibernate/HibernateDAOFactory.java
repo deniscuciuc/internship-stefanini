@@ -11,7 +11,7 @@ import dao.UserDAO;
 public class HibernateDAOFactory extends DAOFactory {
 
 	/**
-	 * Allows to create new UserHibernateDAO and perform Hibernate operations on User
+	 * Allows creating new UserHibernateDAO and perform Hibernate operations on User
 	 * @return UserHibernateDAO
 	 */
     @Override
@@ -20,7 +20,7 @@ public class HibernateDAOFactory extends DAOFactory {
     }
 
     /**
-     * Allows to create new TaskHibernateDAO and perform Hibernate operations on Tasks
+     * Allows creating new TaskHibernateDAO and perform Hibernate operations on Tasks
      * @return TaskHibernateDAO
      */
     @Override
