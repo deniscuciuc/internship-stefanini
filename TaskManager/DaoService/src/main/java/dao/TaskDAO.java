@@ -1,9 +1,9 @@
 package dao;
 
 
-import java.util.List;
+import java.util.Set;
 
-import domain.entities.TaskEntity;
+import domain.beans.TaskBean;
 
 
 /**
@@ -13,6 +13,6 @@ import domain.entities.TaskEntity;
  *
  */
 public interface TaskDAO {
-	void createTask(TaskEntity task);
-	List<TaskEntity> getAllUsersTasks(int userId);
+	void createTask(TaskBean task);
+	Set<TaskBean> getAllUsersTasks(int userId);
 }

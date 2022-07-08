@@ -7,12 +7,12 @@ package dao;
  * @author dcuciuc
  *
  */
-import java.util.List;
 
 import domain.beans.UserBean;
-import domain.entities.UserEntity;
+
+import java.util.Set;
 
 public interface UserDAO {
 	void createUser(UserBean user);
-	List<UserEntity> getAllUsers();
+	Set<UserBean> getAllUsers();
 }

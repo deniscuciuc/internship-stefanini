@@ -17,11 +17,11 @@
         <property name="userName" type="string" unique="true">
             <column name="userName" />
         </property>
-        <set name="tasks" table="tasks" fetch="select" cascade="all">
+        <set name="tasks" table="tasks" inverse="true" cascade="save-update" fetch="select">
             <key>
                 <column name="user_id" not-null="true"></column>
             </key>
-            <one-to-many class="TaskBean"/>
+            <one-to-many class="domain.beans.TaskBean"/>
         </set>
     </class>
 

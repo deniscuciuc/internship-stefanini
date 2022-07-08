@@ -4,14 +4,9 @@ import java.util.*;
 
 import dao.DAOFactory;
 import dao.enums.AvailableDAOFactories;
-import dao.impl.hibernate.util.HibernateFactory;
 import domain.beans.TaskBean;
 import domain.beans.UserBean;
-import domain.entities.TaskEntity;
-import domain.entities.UserEntity;
-import org.hibernate.Session;
 import service.receivers.UserService;
-import service.receivers.exceptions.InvalidUserException;
 
 
 public class UserServiceImpl implements UserService {
@@ -26,14 +21,17 @@ public class UserServiceImpl implements UserService {
 	public void createUserWithTask() {
 		UserBean user = getUserDataFromConsole();
 		TaskBean task = getTaskDataFromConsole();
+
 		task.setUser(user);
 		user.getTasks().add(task);
+
 		saveUserHibernateMySQL(user);
 	}
 
 	@Override
 	public void showAllUsers() {
-
+		Set<UserBean> users = getAllUsersFromMySQLHibernate();
+		users.stream().forEach(userBean -> userBean.toString());
 	}
 
 	@SuppressWarnings("resource")
@@ -69,5 +67,9 @@ public class UserServiceImpl implements UserService {
 
 	private void saveUserHibernateMySQL(UserBean user) {
 		DAOFactory.getDAOFactory(AvailableDAOFactories.HIBERNATE).getUserDAO().createUser(user);
+	}
+
+	private Set<UserBean> getAllUsersFromMySQLHibernate() {
+		return DAOFactory.getDAOFactory(AvailableDAOFactories.HIBERNATE).getUserDAO().getAllUsers();
 	}
 }

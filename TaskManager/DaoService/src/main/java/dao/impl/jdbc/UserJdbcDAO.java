@@ -6,10 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
-import dao.DAOFactory;
 import dao.UserDAO;
-import dao.enums.AvailableDAOFactories;
 import domain.beans.UserBean;
 import domain.entities.UserEntity;
 
@@ -57,8 +56,8 @@ public class UserJdbcDAO implements UserDAO {
 
 	
 	@Override
-	public List<UserEntity> getAllUsers() {
-		String query = "SELECT * FROM users";
+	public Set<UserBean> getAllUsers() {
+		/*String query = "SELECT * FROM users";
 		try (Connection connection = getConnection(); PreparedStatement stmt = connection.prepareStatement(query); ResultSet rs = stmt.executeQuery()) {
 			List<UserEntity> users = new ArrayList<UserEntity>();
 			while (rs.next()) {
@@ -68,7 +67,7 @@ public class UserJdbcDAO implements UserDAO {
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();
-		}
-		return users;
+		}*/
+		return null;
 	}
 }

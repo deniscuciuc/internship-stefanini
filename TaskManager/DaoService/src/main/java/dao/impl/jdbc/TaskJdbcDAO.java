@@ -2,17 +2,17 @@ package dao.impl.jdbc;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import dao.TaskDAO;
-import domain.entities.TaskEntity;
+import domain.beans.TaskBean;
 
 public class TaskJdbcDAO implements TaskDAO {
 	
-	private static List<TaskEntity> tasks;
+	private static List<TaskBean> tasks;
 	
 	
 	public TaskJdbcDAO() {
@@ -20,7 +20,7 @@ public class TaskJdbcDAO implements TaskDAO {
 	}
 	
 	@SuppressWarnings("unused")
-	private TaskJdbcDAO(List<TaskEntity> tasks) {
+	private TaskJdbcDAO(List<TaskBean> tasks) {
 		TaskJdbcDAO.tasks = tasks;
 	}
 	
@@ -30,18 +30,18 @@ public class TaskJdbcDAO implements TaskDAO {
 		return connection;
 	}
 
-	public static List<TaskEntity> getTasks() {
+	public static List<TaskBean> getTasks() {
 		if (TaskJdbcDAO.tasks == null) {
-			TaskJdbcDAO.tasks = new ArrayList<TaskEntity>();
+			TaskJdbcDAO.tasks = new ArrayList<TaskBean>();
 		}
 		return TaskJdbcDAO.tasks;
 	}
 
 	@Override
-	public void createTask(TaskEntity task) {
+	public void createTask(TaskBean task) {
 		String query = "INSERT INTO tasks(UserId, Title, Describtion) VALUES (?, ?, ?)";
 		try (Connection connection = getConnection(); PreparedStatement  stmt = connection.prepareStatement(query)) {
-			stmt.setInt(1, task.getUserId());
+			stmt.setInt(1, task.getUser().getId());
 			stmt.setString(2,  task.getTitle());
 			stmt.setString(3,  task.getDescription());
 			stmt.executeUpdate();
@@ -52,16 +52,17 @@ public class TaskJdbcDAO implements TaskDAO {
 	}
 
 	@Override
-	public List<TaskEntity> getAllUsersTasks(int userId) {
-		String query = "SELECT * FROM tasks WHERE UserId = " + userId;
+	public Set<TaskBean> getAllUsersTasks(int userId) {
+		/*String query = "SELECT * FROM tasks WHERE UserId = " + userId;
 		try (Connection connection = getConnection(); PreparedStatement stmt = connection.prepareStatement(query); ResultSet rs = stmt.executeQuery()) {
-			List<TaskEntity> tasks = new ArrayList<TaskEntity>();
+			List<TaskBean> tasks = new ArrayList<TaskBean>();
 			while (rs.next()) {
 				tasks.add(new TaskEntity(userId, rs.getInt("Id"), rs.getString("Title"), rs.getString("Describtion")));
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}
-		return tasks;
+		return tasks;*/
+		return null;
 	}
 }

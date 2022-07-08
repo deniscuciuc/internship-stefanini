@@ -9,16 +9,14 @@
             <column name="id" />
             <generator class="identity" />
         </id>
-        <property name="title" type="string">
+        <property name="title" type="string" not-null="true">
             <column name="title"></column>
         </property>
-        <property name="description" type="string">
+        <property name="description" type="string" not-null="true">
             <column name="description"></column>
         </property>
 
-        <many-to-one name="user" class="UserBean">
-            <column name="user_id" not-null="true"></column>
-        </many-to-one>
+        <many-to-one name="user" column="user_id" class="domain.beans.UserBean" fetch="select" not-null="true"/>
     </class>
 
 </hibernate-mapping>
