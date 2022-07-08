@@ -16,17 +16,16 @@ public abstract class DAOFactory {
 	
 	/**
 	 * Method allows to access the selected DAOFactories
-	 * @param whichFactory
 	 * @return AvailableDAOFactories
 	 */
 	public static DAOFactory getDAOFactory(AvailableDAOFactories whichFactory) {
 		switch(whichFactory) {
-		case JDBC:
-			return new JdbcDAOFactory();
+			case JDBC:
+				return new JdbcDAOFactory();
 			case HIBERNATE:
 				return new HibernateDAOFactory();
-		default:
-			return null;
+			default:
+				return null;
 		}
 	}
 }
