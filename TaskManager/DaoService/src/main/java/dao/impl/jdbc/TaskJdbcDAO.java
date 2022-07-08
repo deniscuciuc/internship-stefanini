@@ -5,10 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import dao.TaskDAO;
 import domain.beans.TaskBean;
+import domain.entities.TaskEntity;
 
 public class TaskJdbcDAO implements TaskDAO {
 	
@@ -38,7 +38,7 @@ public class TaskJdbcDAO implements TaskDAO {
 	}
 
 	@Override
-	public void createTask(TaskBean task) {
+	public void createTask(TaskEntity task) {
 		String query = "INSERT INTO tasks(UserId, Title, Describtion) VALUES (?, ?, ?)";
 		try (Connection connection = getConnection(); PreparedStatement  stmt = connection.prepareStatement(query)) {
 			stmt.setInt(1, task.getUser().getId());
@@ -52,7 +52,7 @@ public class TaskJdbcDAO implements TaskDAO {
 	}
 
 	@Override
-	public Set<TaskBean> getAllUsersTasks(int userId) {
+	public List<TaskEntity> getAllUsersTasks(String userName) {
 		/*String query = "SELECT * FROM tasks WHERE UserId = " + userId;
 		try (Connection connection = getConnection(); PreparedStatement stmt = connection.prepareStatement(query); ResultSet rs = stmt.executeQuery()) {
 			List<TaskBean> tasks = new ArrayList<TaskBean>();

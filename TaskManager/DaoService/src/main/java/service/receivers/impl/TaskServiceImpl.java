@@ -11,9 +11,7 @@ import org.apache.logging.log4j.Logger;
 import dao.DAOFactory;
 import dao.enums.AvailableDAOFactories;
 import domain.entities.TaskEntity;
-import domain.entities.UserEntity;
 import service.receivers.TaskService;
-import service.receivers.exceptions.InvalidUserException;
 
 public class TaskServiceImpl implements TaskService {
 	
@@ -21,108 +19,42 @@ public class TaskServiceImpl implements TaskService {
 	
 	@Override
 	public void addTask() {
-		/*if (!areUsersCreated()) {
-			return;
-		}
-		generateTask();*/
+		TaskEntity task = getTaskDataFromConsole();
+		saveTaskHibernateMySQLByUserId(task);
 	}
 	
 	@Override
 	public void showAllUsersTasks() {
-		/*if (!areUsersCreated()) {
-			return;
-		}
-		try {
-			UserEntity user = findUserByUserName(getUserNameFromKeyboard());
-			checkIfSuchUserExist(user);
-			displayTasks(user);
-		} catch (InvalidUserException e) {
-			logger.error("Such user don't exist!", e);
-		}*/
+		String userName = getUserNameFromConsole();
+		List<TaskEntity> tasks = getUsersTasksByUserNameHibernateMySQL(userName);
+		tasks.stream().forEach(taskEntity -> System.out.println(taskEntity.toString()));
  	}
-	
-	
-	/*private void generateTask() {
-		UserEntity user = findUserByUserName(getUserNameFromKeyboard());
-		try {
-			checkIfSuchUserExist(user);
-			TaskEntity task = getTaskDataFromUser();
-			task.setId(user.getId());
-			saveUsersTask(user, task);
-			saveTaskMySQL(task);
-		} catch(InvalidUserException e) {
-			System.out.println(e);
-		}
+
+
+	private TaskEntity getTaskDataFromConsole() {
+		Scanner scanner = new Scanner(System.in);
+
+		System.out.print("Task title: ");
+		String title = scanner.nextLine();
+
+		System.out.print("Task description: ");
+		String description = scanner.nextLine();
+
+		return new TaskEntity(title, description);
 	}
-	
-	private void displayTasks(UserEntity user) {
-		List<TaskEntity> tasks = user.getTasks();
-		int taskCounter = 1;
-		
-		System.out.println("\n" + user.getUserName());
-		for (TaskEntity task : tasks) {
-			System.out.println("\n\nTask " + taskCounter);
-			System.out.println("Title: " + task.getTitle());
-			System.out.print("Describtion: " + task.getDescription());
-			taskCounter++;
-		}
-	}
-	
-	public boolean areUsersCreated() {
-		List<UserEntity> users = UserServiceImpl.getAllUsersFromMySQL();
-		if (users.isEmpty()) {
-			return false;
-		}
-		return true;
-	}
-	
-	private String getUserNameFromKeyboard() {
+
+	private String getUserNameFromConsole() {
 		Scanner scanner = new Scanner(System.in);
 		System.out.print("Username: ");
 		String userName = scanner.nextLine();
-		
-		// scanner.nextLine() can fix exceptions such as scanner.nextInt source not found
-		scanner.nextLine();
 		return userName;
 	}
-	
-	private UserEntity findUserByUserName(String userName) {
-		List<UserEntity> users = UserServiceImpl.getAllUsersFromMySQL();
-		for (UserEntity user : users) {
-			if (user.getUserName().equals(userName)) {
-				return user;
-			}
-		}
-		return null;
+
+	private List<TaskEntity> getUsersTasksByUserNameHibernateMySQL(String userName) {
+		return DAOFactory.getDAOFactory(AvailableDAOFactories.HIBERNATE).getTaskDAO().getAllUsersTasks(userName);
 	}
-	
-	private TaskEntity getTaskDataFromUser() {
-		Scanner scanner = new Scanner(System.in);
-		
-		System.out.print("Title: ");
-		String title = scanner.nextLine();
-		
-		System.out.print("Describtion: ");
-		String describtion = scanner.nextLine();
-		
-		return new TaskEntity(title, describtion);
+
+	private void saveTaskHibernateMySQLByUserId(TaskEntity task) {
+		DAOFactory.getDAOFactory(AvailableDAOFactories.HIBERNATE).getTaskDAO().createTask(task);
 	}
-	
-	private void saveUsersTask(UserEntity user, TaskEntity task) {
-		user.getTasks().add(task);
-	}
-	
-	private void saveTaskMySQL(TaskEntity task) {
-		DAOFactory.getDAOFactory(AvailableDAOFactories.JDBC).getTaskDAO().createTask(task);
-	}
-	
-//	private boolean isUsersListEmpty() {
-//		return UserJdbcDAO.getUsers().isEmpty();
-//	}
-	
-	private void checkIfSuchUserExist(UserEntity user) throws InvalidUserException {
-		if (user == null) {
-			throw new InvalidUserException("No such user");
-		}
-	}*/
 }

@@ -8,8 +8,8 @@ import java.util.Set;
 public class UserEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "user_id", nullable = false, unique = true)
     private int id;
 
     @Column(name = "firstName", length = 20, nullable = false)
@@ -18,10 +18,10 @@ public class UserEntity {
     @Column(name = "lastName", length = 20, nullable = false)
     private String lastName;
 
-    @Column(name = "userName", length = 20, nullable = false)
+    @Column(name = "userName", length = 20, nullable = false, unique = true)
     private String userName;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<TaskEntity> tasks;
     
     public UserEntity() {

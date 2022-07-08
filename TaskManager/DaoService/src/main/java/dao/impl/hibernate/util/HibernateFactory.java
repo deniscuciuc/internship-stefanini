@@ -6,6 +6,9 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 
 /**
  * This is the helper class that will allow us to build and get a sessionFactories to perform transactions
@@ -39,7 +42,7 @@ public class HibernateFactory {
      */
     public static SessionFactory getSessionAnnotationFactory() {
         if (sessionAnnotationFactory == null) sessionAnnotationFactory = buildSessionAnnotationFactory();
-        return sessionFactory;
+        return sessionAnnotationFactory;
     }
 
     private static SessionFactory buildSessionFactory() {
@@ -68,8 +71,7 @@ public class HibernateFactory {
             configuration.configure("hibernate-annotation.cfg.xml");
             System.out.println("Hibernate Annotation Configuration loaded");
 
-            ServiceRegistry serviceRegistry = new
-                    StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
+            ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
             System.out.println("Hibernate Annotation serviceRegistry created");
 
             SessionFactory sessionFactory = configuration.buildSessionFactory(serviceRegistry);

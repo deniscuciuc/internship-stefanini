@@ -17,7 +17,7 @@
         <property name="userName" type="string" unique="true">
             <column name="userName" />
         </property>
-        <set name="tasks" table="tasks" inverse="true" cascade="save-update" fetch="select">
+        <set name="tasks" table="tasks" inverse="true" cascade="merge" lazy="true" fetch="select">
             <key>
                 <column name="user_id" not-null="true"></column>
             </key>

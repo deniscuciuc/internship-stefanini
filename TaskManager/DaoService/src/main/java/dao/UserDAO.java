@@ -8,11 +8,11 @@ package dao;
  *
  */
 
-import domain.beans.UserBean;
+import domain.entities.UserEntity;
 
-import java.util.Set;
+import java.util.List;
 
 public interface UserDAO {
-	void createUser(UserBean user);
-	Set<UserBean> getAllUsers();
+	void createUser(UserEntity user);
+	List<UserEntity> getAllUsers();
 }

@@ -2,20 +2,20 @@ package dao.impl.hibernate;
 
 import dao.UserDAO;
 import dao.impl.hibernate.util.HibernateFactory;
-import domain.beans.UserBean;
+import domain.entities.UserEntity;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 public class UserHibernateDAO implements UserDAO {
 
-    @Override
-    public void createUser(UserBean user) {
-       try {
 
-           SessionFactory sessionFactory = HibernateFactory.getSessionFactory();
+    @Override
+    public void createUser(UserEntity user) {
+       try {
+           SessionFactory sessionFactory = HibernateFactory.getSessionAnnotationFactory();
            Session session = sessionFactory.getCurrentSession();
 
            session.beginTransaction();
@@ -29,17 +29,27 @@ public class UserHibernateDAO implements UserDAO {
                session.close();
            }
        } catch(Exception e) {
-           System.out.println("Exception occured. " + e.getMessage());
            e.printStackTrace();
        }
     }
 
     @Override
-    public Set<UserBean> getAllUsers() {
-        Session session = HibernateFactory.getSessionFactory().getCurrentSession();
-        session.beginTransaction();
-        HashSet users = (HashSet)session.createQuery("from UserBean").list();
-        session.getTransaction().commit();
-        return users;
+    public List<UserEntity> getAllUsers() {
+        try {
+            Session session = HibernateFactory.getSessionAnnotationFactory().getCurrentSession();
+            Transaction transaction = session.beginTransaction();
+
+            List<UserEntity> users = session.createQuery("from UserEntity").list();
+            transaction.rollback();
+
+            if (session.isOpen()) {
+                session.close();
+            }
+
+            return users;
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

@@ -6,10 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import dao.UserDAO;
-import domain.beans.UserBean;
 import domain.entities.UserEntity;
 
 public class UserJdbcDAO implements UserDAO {
@@ -41,7 +39,7 @@ public class UserJdbcDAO implements UserDAO {
 	}
 
 	@Override
-	public void createUser(UserBean user) {
+	public void createUser(UserEntity user) {
 		String query = "INSERT INTO users(UserName, FirstName, LastName) VALUES (?, ?, ?)";
 		try (Connection connection = getConnection(); PreparedStatement  stmt = connection.prepareStatement(query)) {
 			stmt.setString(1, user.getUserName());
@@ -56,7 +54,7 @@ public class UserJdbcDAO implements UserDAO {
 
 	
 	@Override
-	public Set<UserBean> getAllUsers() {
+	public List<UserEntity> getAllUsers() {
 		/*String query = "SELECT * FROM users";
 		try (Connection connection = getConnection(); PreparedStatement stmt = connection.prepareStatement(query); ResultSet rs = stmt.executeQuery()) {
 			List<UserEntity> users = new ArrayList<UserEntity>();
