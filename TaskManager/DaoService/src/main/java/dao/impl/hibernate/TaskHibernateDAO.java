@@ -2,26 +2,31 @@ package dao.impl.hibernate;
 
 import dao.TaskDAO;
 import dao.impl.hibernate.util.HibernateFactory;
-import domain.entities.TaskEntity;
-import domain.entities.UserEntity;
+import domain.TaskEntity;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
-
+/**
+ * This Hibernate DAO class is responsible for Hibernate operations with TaskEntity object and MySQL
+ * @author dcuciuc
+ */
 public class TaskHibernateDAO implements TaskDAO {
 
-	
+    /**
+     * Method saves TaskEntity object in database through one hibernate transaction.
+     * Then commit, after commit we can use task id from database.
+     * After all the method will check whether the session is open, and if it is, it will close it
+     * @param task
+     */
     @Override
     public void createTask(TaskEntity task) {
         try {
-            SessionFactory sessionFactory = HibernateFactory.getSessionFactory();
+            SessionFactory sessionFactory = HibernateFactory.getSessionAnnotationFactory();
             Session session = sessionFactory.getCurrentSession();
 
             session.beginTransaction();
@@ -29,27 +34,32 @@ public class TaskHibernateDAO implements TaskDAO {
             session.save(task);
 
             session.getTransaction().commit();
-            System.out.println("Task ID = " + task.getId());
-            System.out.println("Username = " + task.getUser().getId());
+            System.out.println("Task is saved! Task ID = " + task.getId() + "| Performer = " + task.getUser().getUserName());
+
             if (session.isOpen()) {
                 session.close();
             }
+
         } catch(Exception e) {
             e.printStackTrace();
         }
     }
 
+    /**
+     * Method gets all user's tasks from database using his id and one transaction.
+     * All tasks will be placed in the list, then save it with rollback.
+     * If the method returns null, it means that user has no tasks
+     * @param userId
+     * @return List<TaskEntity>
+     */
     @Override
-    public List<TaskEntity> getAllUsersTasks(String userName) {
+    public List<TaskEntity> getAllUsersTasks(int userId) {
         try {
             Session session = HibernateFactory.getSessionAnnotationFactory().getCurrentSession();
             Transaction transaction = session.beginTransaction();
-            Query query = session.createQuery("from UserEntity where userName = :userName");
-            query.setString("userName", userName);
-            UserEntity user = (UserEntity) query.list().get(0);
 
-            query = session.createQuery("from TaskEntity where user_id = :user_id");
-            query.setInteger("user_id", user.getId());
+            Query query = session.createQuery("from TaskEntity where user_id = :user_id");
+            query.setInteger("user_id", userId);
             List<TaskEntity> tasks = query.list();
 
             transaction.rollback();
@@ -57,6 +67,7 @@ public class TaskHibernateDAO implements TaskDAO {
             if (session.isOpen()) {
                 session.close();
             }
+
             return tasks;
         } catch(Exception e) {
             e.printStackTrace();
