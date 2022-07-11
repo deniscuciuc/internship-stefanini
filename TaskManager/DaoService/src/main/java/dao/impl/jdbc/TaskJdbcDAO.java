@@ -2,17 +2,21 @@ package dao.impl.jdbc;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import dao.TaskDAO;
-import domain.beans.TaskBean;
-import domain.entities.TaskEntity;
+import domain.TaskEntity;
 
+/**
+ * This Jdbc DAO class is responsible for Jdbc operations with TaskEntity object using direct sql queries
+ * @author dcuciuc
+ */
 public class TaskJdbcDAO implements TaskDAO {
 	
-	private static List<TaskBean> tasks;
+	private static List<TaskEntity> tasks;
 	
 	
 	public TaskJdbcDAO() {
@@ -20,7 +24,7 @@ public class TaskJdbcDAO implements TaskDAO {
 	}
 	
 	@SuppressWarnings("unused")
-	private TaskJdbcDAO(List<TaskBean> tasks) {
+	private TaskJdbcDAO(List<TaskEntity> tasks) {
 		TaskJdbcDAO.tasks = tasks;
 	}
 	
@@ -30,13 +34,22 @@ public class TaskJdbcDAO implements TaskDAO {
 		return connection;
 	}
 
-	public static List<TaskBean> getTasks() {
+	/**
+	 * This method is a part of realization of the Singleton pattern, which allows to get a static list of tasks from anywhere
+	 * @return List<TaskEntity>
+	 */
+	public static List<TaskEntity> getTasks() {
 		if (TaskJdbcDAO.tasks == null) {
-			TaskJdbcDAO.tasks = new ArrayList<TaskBean>();
+			TaskJdbcDAO.tasks = new ArrayList<TaskEntity>();
 		}
 		return TaskJdbcDAO.tasks;
 	}
 
+	/**
+	 * Method saves TaskEntity object's values in database.
+	 * Task must have user object already, because need to insert userId
+	 * @param task
+	 */
 	@Override
 	public void createTask(TaskEntity task) {
 		String query = "INSERT INTO tasks(UserId, Title, Describtion) VALUES (?, ?, ?)";
@@ -45,24 +58,30 @@ public class TaskJdbcDAO implements TaskDAO {
 			stmt.setString(2,  task.getTitle());
 			stmt.setString(3,  task.getDescription());
 			stmt.executeUpdate();
-			System.out.println("Task added to MYSQL database succsesfully");
+			System.out.println("Task saved!");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
+	/**
+	 * Method gets all user's tasks from database using his id.
+	 * If the method returns null, it means that user has no tasks
+	 * @param userId
+	 * @return List<TaskEntity>
+	 */
 	@Override
-	public List<TaskEntity> getAllUsersTasks(String userName) {
-		/*String query = "SELECT * FROM tasks WHERE UserId = " + userId;
+	public List<TaskEntity> getAllUsersTasks(int userId) {
+		String query = "SELECT * FROM tasks WHERE userName = " + userId;
 		try (Connection connection = getConnection(); PreparedStatement stmt = connection.prepareStatement(query); ResultSet rs = stmt.executeQuery()) {
-			List<TaskBean> tasks = new ArrayList<TaskBean>();
+			List<TaskEntity> tasks = new ArrayList<TaskEntity>();
 			while (rs.next()) {
-				tasks.add(new TaskEntity(userId, rs.getInt("Id"), rs.getString("Title"), rs.getString("Describtion")));
+				tasks.add(new TaskEntity(rs.getInt("Id"), rs.getString("Title"), rs.getString("Describtion")));
 			}
+			return tasks;
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}
-		return tasks;*/
 		return null;
 	}
 }

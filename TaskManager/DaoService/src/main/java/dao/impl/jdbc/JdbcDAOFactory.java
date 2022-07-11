@@ -8,7 +8,11 @@ import dao.DAOFactory;
 import dao.TaskDAO;
 import dao.UserDAO;
 
-
+/**
+ * This class represents constructor for impl of TaskDao and UserDAO.
+ * Also, it makes connections with Database
+ * @author dcuciuc
+ */
 public class JdbcDAOFactory extends DAOFactory {
 	public static final String DRIVER_CLASS_NAME = "com.mysql.cj.jdbc.Driver";
 	public static final String URL = "jdbc:mysql://localhost:3306/task_manager";
@@ -24,8 +28,12 @@ public class JdbcDAOFactory extends DAOFactory {
 			e.printStackTrace();
 		}
 	}
-	
-	
+
+	/**
+	 * Connecting to database
+	 * @return Connection
+	 * @throws SQLException
+	 */
 	public Connection getConnection() throws SQLException {
 		Connection conn = null;
 		conn = DriverManager.getConnection(URL, USER, PASSWORD);
@@ -40,12 +48,20 @@ public class JdbcDAOFactory extends DAOFactory {
 	}
 
 
+	/**
+	 * Create new UserJdbcDAO to execute operations with users through jdbc
+	 * @return UserDAO
+	 */
 	@Override
 	public UserDAO getUserDAO() {
 		return new UserJdbcDAO();
 	}
 
 
+	/**
+	 * Create new TaskJdbcDAO to execute operations with tasks through jdbc
+	 * @return TaskDAO
+	 */
 	@Override
 	public TaskDAO getTaskDAO() {
 		return new TaskJdbcDAO();

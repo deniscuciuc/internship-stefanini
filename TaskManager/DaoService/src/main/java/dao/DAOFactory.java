@@ -16,7 +16,7 @@ public abstract class DAOFactory {
 	
 	/**
 	 * Method allows to access the selected DAOFactories
-	 * @return AvailableDAOFactories
+	 * @return DAOFactory
 	 */
 	public static DAOFactory getDAOFactory(AvailableDAOFactories whichFactory) {
 		switch(whichFactory) {

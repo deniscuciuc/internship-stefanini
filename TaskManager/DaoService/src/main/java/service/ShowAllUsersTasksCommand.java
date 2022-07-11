@@ -2,6 +2,10 @@ package service;
 
 import service.receivers.TaskService;
 
+/**
+ * Concrete command that is used to show all user's tasks
+ * @author dcuciuc
+ */
 public class ShowAllUsersTasksCommand implements Command {
 	private TaskService taskService;
 
@@ -9,6 +13,10 @@ public class ShowAllUsersTasksCommand implements Command {
 		this.taskService = taskService;
 	}
 
+	/**
+	 * Method calls concrete realizations of this command from service class through its interface - {@link TaskService UserService interface}
+	 * @see TaskService#showAllUsersTasks()
+	 */
 	@Override
 	public void execute() {
 		taskService.showAllUsersTasks();
