@@ -1,3 +1,7 @@
+create database task_manager;
+
+use task_manager;
+
 create table users (
 	user_id int not null auto_increment,
     firstName varchar(20) NOT NULL,
