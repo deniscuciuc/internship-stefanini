@@ -6,9 +6,6 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
 
 /**
  * This is the helper class that will allow us to build and get a sessionFactories to perform transactions
@@ -16,53 +13,20 @@ import javax.persistence.Persistence;
  */
 public class HibernateFactory {
 
-    private static SessionFactory sessionFactory;
-
     private static SessionFactory sessionAnnotationFactory;
 
     private HibernateFactory(SessionFactory sessionFactory) {
-        HibernateFactory.sessionFactory = sessionFactory;
-    }
-
-
-    /**
-     * The method will check if sessionFactory is not null (in which case it will call buildSessionFactoryMethod).
-     * Return us a static sessionFactory to perform the transactions
-     * @return sessionFactory
-     */
-    public static SessionFactory getSessionFactory() {
-        if (sessionFactory == null) sessionFactory = buildSessionFactory();
-        return sessionFactory;
+        HibernateFactory.sessionAnnotationFactory = sessionFactory;
     }
 
     /**
-     * The method will check if sessionFactory is not null (in which case it will call buildSessionAnnotationFactoryMethod).
+     * The method will check if sessionFactory is not null (in which case it will build a session annotation factory and configure it).
      * Return us a static sessionFactory to perform the transactions
-     * @return sessionFactory
+     * @return SessionFactory
      */
     public static SessionFactory getSessionAnnotationFactory() {
         if (sessionAnnotationFactory == null) sessionAnnotationFactory = buildSessionAnnotationFactory();
         return sessionAnnotationFactory;
-    }
-
-    private static SessionFactory buildSessionFactory() {
-        try {
-            Configuration configuration = new Configuration();
-            configuration.configure("hibernate.cfg.xml");
-            System.out.println("Hibernate Configuration loaded");
-
-            ServiceRegistry serviceRegistry = new
-                    StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
-            System.out.println("Hibernate serviceRegistry created");
-
-            SessionFactory sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-
-            return sessionFactory;
-        } catch (Throwable ex) {
-            System.err.println("Initial SessionFactory creation failed." + ex);
-            ex.printStackTrace();
-            throw new ExceptionInInitializerError(ex);
-        }
     }
 
     private static SessionFactory buildSessionAnnotationFactory() {
