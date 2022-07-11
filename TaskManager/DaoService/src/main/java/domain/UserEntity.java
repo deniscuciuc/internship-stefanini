@@ -1,8 +1,14 @@
-package domain.entities;
+package domain;
 
 import javax.persistence.*;
 import java.util.Set;
 
+/**
+ * Entity class for users. This class represent the mapping entity for users table.
+ * Using the one-to-many relationship, we can access the list of tasks from UserEntity object after getting user from the database.
+ * This thing allows finding user by id or username for example and have instantly the list of his tasks
+ * @author dcuciuc
+ */
 @Entity
 @Table(name = "users", uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id"})})
 public class UserEntity {
@@ -98,7 +104,7 @@ public class UserEntity {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "User {" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +

@@ -1,7 +1,13 @@
-package domain.entities;
+package domain;
 
 import javax.persistence.*;
 
+/**
+ * Entity class for tasks. This class represent the mapping entity for tasks table.
+ * Using the many-to-one relationship, we can access the UserEntity object from TaskEntity after getting the task from the database.
+ * This thing allows finding task by id for example and have instantly the UserEntity object
+ * @author dcuciuc
+ */
 @Entity
 @Table(name = "tasks")
 public class TaskEntity {
@@ -78,7 +84,7 @@ public class TaskEntity {
 
     @Override
     public String toString() {
-        return "Task{" +
+        return "Task {" +
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
