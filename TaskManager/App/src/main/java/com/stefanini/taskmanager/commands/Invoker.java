@@ -1,6 +1,4 @@
-package com.stefanini.taskmanager;
-
-import service.Command;
+package com.stefanini.taskmanager.commands;
 
 /**
  * Simple invoker class that will be used only in client class to define and call a specific command
