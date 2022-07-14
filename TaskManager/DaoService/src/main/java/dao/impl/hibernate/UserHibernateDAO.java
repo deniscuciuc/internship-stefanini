@@ -3,95 +3,75 @@ package dao.impl.hibernate;
 import dao.UserDAO;
 import dao.impl.hibernate.util.HibernateFactory;
 import domain.UserEntity;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import java.util.List;
 
-/**
- * This Hibernate DAO class is responsible for Hibernate operations with UserEntity object and MySQL
- * @author dcuciuc
- */
+
 public class UserHibernateDAO implements UserDAO {
 
-    /**
-     * Method saves UserEntity object in database through one hibernate transaction.
-     * If the user is created with tasks, they will also be saved.
-     * Then commit, after commit we can use user id from database.
-     * After all the method will check whether the session is open, and if it is, it will close it
-     * @param user
-     */
-    @Override
-    public void createUser(UserEntity user) {
-       try {
-           SessionFactory sessionFactory = HibernateFactory.getSessionAnnotationFactory();
-           Session session = sessionFactory.getCurrentSession();
+    private static final Logger logger = LogManager.getLogger(UserHibernateDAO.class);
+    private static final String USER_CLASS_NAME = UserEntity.class.getName();
+    private static UserHibernateDAO userHibernateDAO;
 
-           session.beginTransaction();
+    public UserHibernateDAO() {
 
-           session.save(user);
-
-           session.getTransaction().commit();
-           System.out.println("User is saved! User ID = " + user.getId());
-
-           if (session.isOpen()) {
-               session.close();
-           }
-       } catch(Exception e) {
-           e.printStackTrace();
-       }
     }
 
-    /**
-     * Method gets all users from database in one transaction.
-     * All users will be placed in the list, then save it with rollback.
-     * If the method returns null, it means that there are no users in the database
-     * @return List<UserEntity>
-     */
+    private UserHibernateDAO(UserHibernateDAO userHibernateDAO) {
+        UserHibernateDAO.userHibernateDAO = userHibernateDAO;
+    }
+
+    public static UserHibernateDAO getInstance() {
+        if (UserHibernateDAO.userHibernateDAO == null) {
+            UserHibernateDAO.userHibernateDAO = new UserHibernateDAO();
+        }
+        return UserHibernateDAO.userHibernateDAO;
+    }
+
+
     @Override
     public List<UserEntity> getAllUsers() {
+        final Session session = HibernateFactory.getSessionFactory().getCurrentSession();
         try {
-            Session session = HibernateFactory.getSessionAnnotationFactory().getCurrentSession();
-            Transaction transaction = session.beginTransaction();
+            final Transaction transaction = session.beginTransaction();
 
-            List users = session.createQuery("from UserEntity").list();
-            transaction.rollback();
+            Query query = session.createQuery("from " + USER_CLASS_NAME);
 
-            if (session.isOpen()) {
-                session.close();
-            }
+            List users = query.list();
+            transaction.commit();
 
             return users;
         } catch(Exception e) {
-            e.printStackTrace();
+            logger.error("Exception while getting all users occurred. " + e.getMessage());
+        } finally {
+            HibernateFactory.closeSession();
         }
         return null;
     }
 
-    /**
-     * The method is very useful because it returns a UserEntity object by username,
-     * which means that we can access User tasks through it.
-     * UserEntity object is getting from query.list() method, but we get only the first item from list
-     * If the method returns null, it means that there are no users with that username in the database
-     * @param userName
-     * @return UserEntity
-     */
+
     @Override
     public UserEntity getUserByUserName(String userName) {
+        final Session session = HibernateFactory.getSession();
         try {
-            Session session = HibernateFactory.getSessionAnnotationFactory().getCurrentSession();
-            Transaction transaction = session.beginTransaction();
+            final Transaction transaction = session.beginTransaction();
 
-            Query query = session.createQuery("from UserEntity where userName = :userName");
+            Query query = session.createQuery("from " + USER_CLASS_NAME + " where userName = :userName");
             query.setString("userName", userName);
 
             UserEntity user = (UserEntity) query.list().get(0);
             transaction.rollback();
+
             return user;
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Exception while getting user by username occurred. " + e.getMessage());
+        } finally {
+            HibernateFactory.closeSession();
         }
         return null;
     }
