@@ -1,10 +1,7 @@
 package dao.impl.jdbc;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-
 import dao.DAOFactory;
+import dao.GenericDAO;
 import dao.TaskDAO;
 import dao.UserDAO;
 
@@ -14,39 +11,6 @@ import dao.UserDAO;
  * @author dcuciuc
  */
 public class JdbcDAOFactory extends DAOFactory {
-	public static final String DRIVER_CLASS_NAME = "com.mysql.cj.jdbc.Driver";
-	public static final String URL = "jdbc:mysql://localhost:3306/task_manager";
-	public static final String USER = "root";
-	public static final String PASSWORD = "password";
-	
-	private static JdbcDAOFactory connectionFactory = null;
-	
-	public JdbcDAOFactory() {
-		try {
-			Class.forName(DRIVER_CLASS_NAME);
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * Connecting to database
-	 * @return Connection
-	 * @throws SQLException
-	 */
-	public Connection getConnection() throws SQLException {
-		Connection conn = null;
-		conn = DriverManager.getConnection(URL, USER, PASSWORD);
-		return conn;
-    }
-	
-	public static JdbcDAOFactory getInstance() {
-		if (connectionFactory == null) {
-			connectionFactory = new JdbcDAOFactory();
-		}
-		return connectionFactory;
-	}
-
 
 	/**
 	 * Create new UserJdbcDAO to execute operations with users through jdbc
@@ -54,7 +18,7 @@ public class JdbcDAOFactory extends DAOFactory {
 	 */
 	@Override
 	public UserDAO getUserDAO() {
-		return new UserJdbcDAO();
+		return UserJdbcDAO.getInstance();
 	}
 
 
@@ -64,8 +28,13 @@ public class JdbcDAOFactory extends DAOFactory {
 	 */
 	@Override
 	public TaskDAO getTaskDAO() {
-		return new TaskJdbcDAO();
+		return TaskJdbcDAO.getInstance();
 	}
-	
-	
+
+	@Override
+	public GenericDAO getGenericDAO() {
+		return null;
+	}
+
+
 }
