@@ -1,30 +1,28 @@
 package dao.impl.hibernate;
 
 import dao.DAOFactory;
+import dao.GenericDAO;
 import dao.TaskDAO;
 import dao.UserDAO;
 
-/**
- * Simple Hibernate DAO Factory through which we can access low-level operations with database
- * @author dcuciuc
- */
+
 public class HibernateDAOFactory extends DAOFactory {
 
-	/**
-	 * Allows creating new UserHibernateDAO and perform Hibernate operations with UserEntities objects
-	 * @return UserHibernateDAO
-	 */
+
     @Override
     public UserDAO getUserDAO() {
-        return new UserHibernateDAO();
+        return UserHibernateDAO.getInstance();
     }
 
-    /**
-     * Allows creating new TaskHibernateDAO and perform Hibernate operations with TaskEntities object
-     * @return TaskHibernateDAO
-     */
+
     @Override
     public TaskDAO getTaskDAO() {
-        return new TaskHibernateDAO();
+        return TaskHibernateDAO.getInstance();
+    }
+
+
+    @Override
+    public GenericDAO getGenericDAO() {
+        return GenericHibernateDAO.getInstance();
     }
 }
