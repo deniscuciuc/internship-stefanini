@@ -13,7 +13,8 @@ public abstract class DAOFactory {
 	
 	public abstract UserDAO getUserDAO();
 	public abstract TaskDAO getTaskDAO();
-	
+	public abstract GenericDAO getGenericDAO();
+
 	/**
 	 * Method allows to access the selected DAOFactories
 	 * @return DAOFactory
