@@ -1,4 +1,4 @@
-package service.receivers.impl;
+package service.impl;
 
 
 import java.util.Scanner;
@@ -7,28 +7,19 @@ import java.util.Set;
 
 import domain.UserEntity;
 import domain.TaskEntity;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import dao.DAOFactory;
 import dao.enums.AvailableDAOFactories;
-import service.receivers.TaskService;
-import service.receivers.exceptions.InvalidUserException;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+import service.TaskService;
+import service.exceptions.InvalidUserException;
 
-/**
- * This class represents all command implementations for tasks operations.
- * Calling by concrete commands methods executes all operations with databases and client UI
- * @author dcuciuc
- */
+
 public class TaskServiceImpl implements TaskService {
-	
+
 	private static final Logger logger = LogManager.getLogger(TaskServiceImpl.class);
 
-	/**
-	 * This method should generate task and save it in database.
-	 * Method takes the username from the console, then gets the user from the database.
-	 * Then asks for all task details from the console and sets user to the task
-	 * After all method save task in database
-	 */
+
 	@Override
 	public void addTask() {
 		String userName = getUserNameFromConsole();
@@ -40,11 +31,7 @@ public class TaskServiceImpl implements TaskService {
 		saveTaskHibernateMySQLByUserId(task);
 	}
 
-	/**
-	 * Method prints all user's tasks in console.
-	 * Once the method has requested a username from the console,
-	 * it retrieves the user's tasks from the database by username and displays them from the set of
-	 */
+
 	@Override
 	public void showAllUsersTasks() {
 		String userName = getUserNameFromConsole();
@@ -75,12 +62,12 @@ public class TaskServiceImpl implements TaskService {
 
 			return userName;
 		} catch (InvalidUserException e) {
-			System.out.println(e);
+			logger.error("Exception while getting user name from console. " + e.getMessage());
 		}
 		return null;
 	}
 	private void displayTasksConsole(String userName, Set<TaskEntity> tasks) {
-		System.out.println("User: " + userName + " have " + tasks.size() + " task/tasks");
+		System.out.println(userName + "'s number of tasks: " + tasks.size());
 		tasks.stream().forEach(taskEntity -> System.out.println(taskEntity.toString()));
 	}
 
@@ -100,6 +87,6 @@ public class TaskServiceImpl implements TaskService {
 	}
 
 	private void saveTaskHibernateMySQLByUserId(TaskEntity task) {
-		DAOFactory.getDAOFactory(AvailableDAOFactories.HIBERNATE).getTaskDAO().createTask(task);
+		DAOFactory.getDAOFactory(AvailableDAOFactories.HIBERNATE).getGenericDAO().create(task);
 	}
 }

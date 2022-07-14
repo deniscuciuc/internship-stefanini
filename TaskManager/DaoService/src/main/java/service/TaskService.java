@@ -1,4 +1,4 @@
-package service.receivers;
+package service;
 
 /**
  * This class represents an interface for tasks methods realization.
@@ -8,7 +8,9 @@ package service.receivers;
 public interface TaskService {
 
 	/**
-	 * Method creates new task and add it to the user
+	 * Method takes the username from the console, then gets the user from the database.
+	 * Then asks for all task details from the console and sets user to the task
+	 * After all method save task in database
 	 */
 	void addTask();
 

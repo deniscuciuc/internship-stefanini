@@ -1,4 +1,4 @@
-package service.receivers.impl;
+package service.impl;
 
 import java.util.*;
 
@@ -6,28 +6,27 @@ import dao.DAOFactory;
 import dao.enums.AvailableDAOFactories;
 import domain.TaskEntity;
 import domain.UserEntity;
-import service.receivers.UserService;
-import service.receivers.exceptions.InvalidUserException;
+import email.SendMail;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+import service.UserService;
+import service.exceptions.InvalidUserException;
 
-/**
- * This class represents all command implementations for user operations.
- * Calling by concrete commands methods executes all operations with databases and client UI
- * @author dcuciuc
- */
+
 public class UserServiceImpl implements UserService {
 
-	/**
-	 * Method gets user details from console, generates user object, then save it in database
-	 */
+	private static final Logger logger = LogManager.getLogger(UserServiceImpl.class);
+
+
 	@Override
 	public void createUser() {
 		UserEntity user = getUserDataFromConsole();
 		saveUserHibernateMySQL(user);
+		sendMail(user.getFirstName(), user.getLastName(), user.getUserName());
 	}
 
-	/**
-	 * Method gets user and tasks details from console, generate both objects, then save user in database
-	 */
+
+
 	@Override
 	public void createUserWithTask() {
 		UserEntity user = getUserDataFromConsole();
@@ -42,13 +41,16 @@ public class UserServiceImpl implements UserService {
 		saveUserHibernateMySQL(user);
 	}
 
-	/**
-	 * Method shows / prints all users' information by calling them from database
-	 */
+
 	@Override
 	public void showAllUsers() {
 		List<UserEntity> users = getAllUsersFromMySQLHibernate();
 		displayUsersConsole(users);
+	}
+
+	@SendMail
+	private void sendMail(String firstName, String lastName, String userName) {
+		logger.info("Sending email...");
 	}
 
 	private UserEntity getUserDataFromConsole() {
@@ -67,11 +69,11 @@ public class UserServiceImpl implements UserService {
 			String lastName = scanner.nextLine();
 
 
-			Set<TaskEntity> tasks = new HashSet<TaskEntity>();
+			Set<TaskEntity> tasks = new HashSet<>();
 
 			return new UserEntity(firstName, lastName, userName, tasks);
 		} catch (InvalidUserException e) {
-			System.out.println(e);
+			logger.error("Exception while getting user details from console. " + e.getMessage());
 		}
 		return null;
 	}
@@ -100,7 +102,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	private void saveUserHibernateMySQL(UserEntity user) {
-		DAOFactory.getDAOFactory(AvailableDAOFactories.HIBERNATE).getUserDAO().createUser(user);
+		DAOFactory.getDAOFactory(AvailableDAOFactories.HIBERNATE).getGenericDAO().create(user);
 	}
 
 	private List<UserEntity> getAllUsersFromMySQLHibernate() {
