@@ -12,9 +12,9 @@ public class EmailSendingAspect {
         new EmailSender().sendEmail(message);
     }
 
-    @After("@annotation(SendMail) && args(id, title, describtion, userName)")
-    public void createMessage(int id, String title, String describtion, String userName) {
-        String message = "Task { " + title + " } { " + describtion + " } has been assigned to {" + userName + "}";
+    @After("@annotation(SendMail) && args(id, title, description, userName)")
+    public void createMessage(int id, String title, String description, String userName) {
+        String message = "Task { " + title + " } { " + description + " } has been assigned to {" + userName + "}";
         new EmailSender().sendEmail(message);
     }
 }
