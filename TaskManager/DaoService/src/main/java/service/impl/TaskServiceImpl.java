@@ -9,6 +9,7 @@ import domain.UserEntity;
 import domain.TaskEntity;
 import dao.DAOFactory;
 import dao.enums.AvailableDAOFactories;
+import email.SendMail;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import service.TaskService;
@@ -29,6 +30,7 @@ public class TaskServiceImpl implements TaskService {
 		task.setUser(user);
 
 		saveTaskHibernateMySQLByUserId(task);
+		sendMail(task.getId(), task.getTitle(), task.getDescription(), task.getUser().getUserName());
 	}
 
 
@@ -39,6 +41,10 @@ public class TaskServiceImpl implements TaskService {
 		displayTasksConsole(userName, tasks);
  	}
 
+	@SendMail
+	private void sendMail(int id, String title, String describtion, String userName) {
+		logger.info("Sending email...");
+	}
 
 	private TaskEntity getTaskDataFromConsole() {
 		Scanner scanner = new Scanner(System.in);
