@@ -1,26 +1,21 @@
 package com.stefanini.taskmanager.commands.actions;
 
 import com.stefanini.taskmanager.commands.Command;
+import domain.TaskEntity;
 import service.TaskService;
+import service.impl.TaskServiceImpl;
 
-/**
- * Concrete command that is used to add / create task to the user
- * @author dcuciuc
- */
+
 public class AddTaskCommand implements Command {
-	private TaskService taskService;
+	private TaskEntity task;
+	private TaskService taskService = new TaskServiceImpl();
 
-	public AddTaskCommand(TaskService taskService) {
-		this.taskService = taskService;
+	public AddTaskCommand(TaskEntity task) {
+		this.task = task;
 	}
 
-	/**
-	 * Method calls concrete realizations of this command from service class through its interface - {@link TaskService TaskService interface}
-	 * @see TaskService#addTask()
-	 */
 	@Override
 	public void execute() {
-		taskService.addTask();
+		taskService.addTask(task);
 	}
-
 }
