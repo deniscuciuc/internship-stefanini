@@ -5,10 +5,8 @@ import dao.impl.hibernate.util.HibernateFactory;
 import domain.TaskEntity;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
+import org.hibernate.*;
+import org.hibernate.criterion.Restrictions;
 
 
 import java.util.List;
@@ -42,9 +40,10 @@ public class TaskHibernateDAO implements TaskDAO {
         try {
             final Transaction transaction = session.beginTransaction();
 
-            Query query = session.createQuery("from " + TASK_CLASS_NAME + " where user_id = :user_id");
-            query.setInteger("user_id", userId);
-            List<TaskEntity> tasks = query.list();
+            Criteria criteria = session.createCriteria(TASK_CLASS_NAME);
+            criteria.add(Restrictions.eq("user_id", userId));
+
+            List<TaskEntity> tasks = criteria.list();
 
             transaction.rollback();
 

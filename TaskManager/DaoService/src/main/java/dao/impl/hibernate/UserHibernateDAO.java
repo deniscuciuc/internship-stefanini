@@ -5,9 +5,11 @@ import dao.impl.hibernate.util.HibernateFactory;
 import domain.UserEntity;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
 import java.util.List;
 
@@ -40,9 +42,9 @@ public class UserHibernateDAO implements UserDAO {
         try {
             final Transaction transaction = session.beginTransaction();
 
-            Query query = session.createQuery("from " + USER_CLASS_NAME);
+            Criteria criteria = session.createCriteria(USER_CLASS_NAME);
+            List users = criteria.list();
 
-            List users = query.list();
             transaction.commit();
 
             return users;
@@ -60,11 +62,10 @@ public class UserHibernateDAO implements UserDAO {
         final Session session = HibernateFactory.getSession();
         try {
             final Transaction transaction = session.beginTransaction();
+            Criteria criteria = session.createCriteria(USER_CLASS_NAME);
+            criteria.add(Restrictions.eq("userName", userName));
 
-            Query query = session.createQuery("from " + USER_CLASS_NAME + " where userName = :userName");
-            query.setString("userName", userName);
-
-            UserEntity user = (UserEntity) query.list().get(0);
+            UserEntity user = (UserEntity) criteria.list().get(0);
             transaction.rollback();
 
             return user;
