@@ -6,8 +6,11 @@ import service.impl.UserServiceImpl;
 
 
 public class ShowAllUsersCommand implements Command {
-	private UserService userService = new UserServiceImpl();
+	private UserService userService;
 
+	public ShowAllUsersCommand() {
+		userService = new UserServiceImpl();
+	}
 
 	@Override
 	public void execute() {

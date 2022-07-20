@@ -8,11 +8,12 @@ import service.impl.UserServiceImpl;
 public class CreateUserCommand implements Command {
 	private UserEntity user;
 
-	private UserService userService = new UserServiceImpl();
+	private UserService userService;
 	
 	
 	public CreateUserCommand(UserEntity user) {
 		this.user = user;
+		userService = new UserServiceImpl();
 	}
 
 

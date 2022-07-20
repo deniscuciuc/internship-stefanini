@@ -8,10 +8,11 @@ import service.impl.TaskServiceImpl;
 
 public class AddTaskCommand implements Command {
 	private TaskEntity task;
-	private TaskService taskService = new TaskServiceImpl();
+	private TaskService taskService;
 
 	public AddTaskCommand(TaskEntity task) {
 		this.task = task;
+		taskService = new TaskServiceImpl();
 	}
 
 	@Override

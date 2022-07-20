@@ -12,8 +12,6 @@ import domain.TaskEntity;
 import domain.UserEntity;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import service.TaskService;
-import service.UserService;
 import service.exceptions.InvalidUserException;
 
 import java.util.HashSet;
