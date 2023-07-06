@@ -1,7 +1,6 @@
 package service.impl;
 
 
-import java.util.Scanner;
 import java.util.Set;
 
 
@@ -22,74 +21,29 @@ public class TaskServiceImpl implements TaskService {
 
 
 	@Override
-	public void addTask() {
-		String userName = getUserNameFromConsole();
-		UserEntity user = getUserByUserNameHibernateMySQL(userName);
-
-		TaskEntity task = getTaskDataFromConsole();
-		task.setUser(user);
-
+	public void addTask(TaskEntity task) {
 		saveTaskHibernateMySQLByUserId(task);
 		sendMail(task.getId(), task.getTitle(), task.getDescription(), task.getUser().getUserName());
 	}
 
 
 	@Override
-	public void showAllUsersTasks() {
-		String userName = getUserNameFromConsole();
-		Set<TaskEntity> tasks = getUsersTasksByUserNameHibernateMySQL(userName);
-		displayTasksConsole(userName, tasks);
+	public void showAllUsersTasks(String userName) {
+		displayTasksConsole(userName, getUsersTasksByUserNameHibernateMySQL(userName));
  	}
 
 	@SendMail
-	private void sendMail(int id, String title, String describtion, String userName) {
+	private void sendMail(int id, String title, String description, String userName) {
 		logger.info("Sending email...");
 	}
 
-	private TaskEntity getTaskDataFromConsole() {
-		Scanner scanner = new Scanner(System.in);
-
-		System.out.print("Task title: ");
-		String title = scanner.nextLine();
-
-		System.out.print("Task description: ");
-		String description = scanner.nextLine();
-
-		return new TaskEntity(title, description);
-	}
-
-	private String getUserNameFromConsole() {
-		try {
-			Scanner scanner = new Scanner(System.in);
-			System.out.print("Username: ");
-			String userName = scanner.nextLine();
-
-			checkIfUserWithSuchUserNameExists(userName);
-
-			return userName;
-		} catch (InvalidUserException e) {
-			logger.error("Exception while getting user name from console. " + e.getMessage());
-		}
-		return null;
-	}
 	private void displayTasksConsole(String userName, Set<TaskEntity> tasks) {
 		System.out.println(userName + "'s number of tasks: " + tasks.size());
-		tasks.stream().forEach(taskEntity -> System.out.println(taskEntity.toString()));
-	}
-
-	private void checkIfUserWithSuchUserNameExists(String userName) throws InvalidUserException {
-		UserEntity user = DAOFactory.getDAOFactory(AvailableDAOFactories.HIBERNATE).getUserDAO().getUserByUserName(userName);
-		if (user == null) {
-			throw new InvalidUserException("The user with this name does not exist!");
-		}
+		tasks.stream().forEach(System.out::println);
 	}
 
 	private Set<TaskEntity> getUsersTasksByUserNameHibernateMySQL(String userName) {
 		return DAOFactory.getDAOFactory(AvailableDAOFactories.HIBERNATE).getUserDAO().getUserByUserName(userName).getTasks();
-	}
-
-	private UserEntity getUserByUserNameHibernateMySQL(String userName) {
-		return DAOFactory.getDAOFactory(AvailableDAOFactories.HIBERNATE).getUserDAO().getUserByUserName(userName);
 	}
 
 	private void saveTaskHibernateMySQLByUserId(TaskEntity task) {

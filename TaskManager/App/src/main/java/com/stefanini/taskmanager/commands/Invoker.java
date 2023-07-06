@@ -4,7 +4,7 @@ package com.stefanini.taskmanager.commands;
  * Simple invoker class that will be used only in client class to define and call a specific command
  * @author dcuciuc
  */
-public class Invoker {
+public class Invoker implements Runnable {
 	private Command action;
 
 
@@ -17,10 +17,8 @@ public class Invoker {
 	}
 
 
-	/**
-	 * The method will execute a specific command after it has been set
-	 */
-	public void executeCommand() {
+	@Override
+	public void run() {
 		action.execute();
 	}
 }
