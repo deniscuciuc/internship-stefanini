@@ -1,0 +1,62 @@
+.background-image {
+    background-image: url("../images/library-photo.jpg");
+    height: 85vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.home-page {
+    color: white;
+    padding-top: 12%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.photo-container img {
+    width: 550px;
+    height: 430px;
+}
+
+.main-info__title {
+    text-align: center;
+}
+
+.main-info__description {
+    padding-top: 1.5em;
+    text-align: center;
+    font-size: 24px;
+}
+
+.content-container__button {
+    padding-top: 25px;
+}
+
+.home-page__explore-books-button {
+    padding-top: 4em;
+    text-align: center;
+}
+.home-page__explore-books-button button {
+    width: 50%;
+    height: 45px;
+    color: black;
+    text-align: center;
+    background: white;
+    border: black 1px solid;
+    border-radius: 10px;
+}
+
+.home-page__explore-books-button button:hover {
+    color: white;
+    background: #444444;
+    border: #444444 3px solid;
+}
+
+.logout-secret {
+    position: absolute;
+    bottom: 10px;
+    right: 1%;
+}
+
+.logout-secret:hover {
+    cursor: pointer;
+}

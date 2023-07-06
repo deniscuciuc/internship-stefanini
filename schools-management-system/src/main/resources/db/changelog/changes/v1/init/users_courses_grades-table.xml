@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+
+    <changeSet id="init-users_courses_grades-table-8" author="dcuciuc">
+
+        <createTable tableName="users_courses_grades">
+            <column name="course_id" type="bigint">
+                <constraints referencedTableName="courses"
+                             referencedColumnNames="id"
+                             foreignKeyName="fk_ucg_course_id"/>
+            </column>
+            <column name="user_id" type="bigint">
+                <constraints referencedTableName="users"
+                             referencedColumnNames="id"
+                             foreignKeyName="fk_ucg_user_id"/>
+            </column>
+            <column name="grade_id" type="bigint">
+                <constraints referencedTableName="grades"
+                             referencedColumnNames="id"
+                             foreignKeyName="fk_ucg_grade_id"/>
+            </column>
+        </createTable>
+
+    </changeSet>
+
+</databaseChangeLog>

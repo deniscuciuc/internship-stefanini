@@ -1,0 +1,13 @@
+.my-books-page {
+    padding-top: 30px;
+    padding-left: 10%;
+}
+
+.no-books-error-message {
+    padding-top: 10%;
+    text-align: center;
+}
+
+.no-books-error-message p {
+    font-size: 18px;
+}

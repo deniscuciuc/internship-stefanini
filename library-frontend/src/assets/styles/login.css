@@ -1,0 +1,148 @@
+.login-page {
+    padding-top: 150px;
+    margin-left: 11%;
+    margin-right: 16.3%;
+    display: flex;
+}
+
+.content__title {
+    text-align: left;
+    color: #05668d;
+}
+
+.line-horizontal-xl {
+    border: 1px solid black;
+    width: 55%;
+    height: 1px;
+}
+
+.content__text {
+    text-align: left;
+    padding-top: 15px;
+    width: 65%;
+    font-size: 18px;
+    color: black;
+}
+
+.content__text a {
+    color: grey;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.content__text a:hover {
+    color: black;
+}
+
+.login-container {
+    width: 100%;
+    height: 600px;
+    border: black 3px solid;
+    border-radius: 15px;
+}
+
+.login-container .login-title {
+    padding-left: 15%;
+    padding-right: 15%;
+    padding-top: 60px;
+}
+
+.login-container .login-title h1 {
+    color: #05668d;
+}
+
+.login-container .login-title p {
+    color: black;
+    font-size: 19px;
+}
+
+.line-horizontal-small {
+    border: 1px solid black;
+    width: 100%;
+    height: 1px;
+}
+
+.login-container .login-form {
+    padding-left: 15%;
+    padding-right: 15%;
+    padding-top: 20px;
+}
+
+.login-container .login-form form section {
+    padding-top: 8px;
+}
+.login-container .login-form form section input {
+    width: 100%;
+    height: 45px;
+    background-color: white;
+    border: black 1px solid;
+    border-radius: 10px;
+}
+
+.login-form__login-btn {
+    padding-top: 15px;
+    width: 100%;
+}
+
+.login-form__login-btn button {
+    width: 100%;
+    height: 45px;
+    color: white;
+    text-align: center;
+    background: #72bb53;
+    border: #72bb53 3px solid;
+    border-radius: 10px;
+}
+
+.login-form__login-btn button:hover {
+    background: #444444;
+    border: #444444 3px solid;
+}
+
+.forgot-password {
+    padding-left: 15%;
+    padding-right: 15%;
+    padding-top: 15px;
+    text-align: center;
+}
+
+.forgot-password a {
+    color: #444444;
+    text-decoration: none;
+}
+
+.forgot-password a:hover {
+    color: #444444;
+    text-decoration: underline;
+}
+
+.line-horizontal-after-password {
+    margin-top: 15px;
+    border: 1px solid black;
+    width: 100%;
+    height: 1px;
+}
+
+.registration-btn {
+    padding-left: 15%;
+    padding-right: 15%;
+    padding-top: 20px;
+    text-align: center;
+}
+
+.registration-btn button {
+    width: 100%;
+    height: 45px;
+    color: white;
+    text-align: center;
+    background: #05668d;
+    border: black 1px solid;
+    border-radius: 10px;
+}
+
+.registration-btn button:hover {
+    color: white;
+    background: #444444;
+    border: #444444 3px solid;
+}
+

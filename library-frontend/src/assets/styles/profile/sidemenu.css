@@ -1,0 +1,49 @@
+/* PROFILE SIDE MENU */
+.profile-side-menu div h5 {
+    cursor: pointer;
+    padding-left: 10%;
+    padding-top: 10px;
+}
+
+.profile-side-menu div h6 {
+    padding-top: 15px;
+}
+
+.profile-side-menu div img {
+    cursor: pointer;
+}
+
+.profile-side-menu {
+    padding-top: 30px;
+    width: 20%;
+    height: auto;
+}
+
+.profile-side-menu__user {
+    display: flex;
+    flex-direction: column;
+}
+.header-with-img {
+    display: flex;
+    flex-direction: row;
+}
+.profile-side-menu__user div {
+    display: flex;
+    padding-top: 10px;
+}
+
+.profile-side-menu__access div {
+    display: flex;
+    padding-top: 10px;
+}
+
+.profile-side-menu__administration div {
+    display: flex;
+    padding-top: 10px;
+}
+
+.profile-side-menu__break-horizontal-line {
+    margin-top: 30px;
+    border: 1px solid black;
+    width: 100%;
+}

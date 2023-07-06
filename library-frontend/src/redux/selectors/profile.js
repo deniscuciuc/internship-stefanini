@@ -1,0 +1,1 @@
+export const getUserProfileData = (state, id) => state.userProfileData.profileData;

@@ -1,0 +1,1 @@
+export const getConfirmationToken = (state) => state.emailConfirmationToken.confirmationToken;

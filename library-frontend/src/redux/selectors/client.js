@@ -1,0 +1,1 @@
+export const getClientData = (state) => state.clientData.client;

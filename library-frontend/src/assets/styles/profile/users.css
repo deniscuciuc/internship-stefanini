@@ -1,0 +1,39 @@
+img {
+    cursor: pointer;
+}
+
+table tbody tr td img {
+    padding-top: 2%;
+    padding-left: 18%;
+}
+
+.users-page {
+    padding-top: 75px;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.page__header {
+    display: flex;
+}
+
+.page__header .users-page__header__buttons {
+    margin-left:10%;
+    display: inline-flex;
+}
+.users-page__header__buttons{
+    padding-top: 20px;
+    padding-left: 2px;
+    float: right;
+    width: 300px;
+    height: 35px;
+}
+
+
+.page__header .input-group {
+    padding: 10px 2% 5px 1%;
+}
+
+.page__header .input-group img {
+    padding-left: 2%;
+}

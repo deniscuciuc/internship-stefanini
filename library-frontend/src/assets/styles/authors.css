@@ -1,0 +1,133 @@
+p {
+    word-wrap: anywhere;
+}
+
+.page {
+    padding-top: 75px;
+    margin-left: 11%;
+    margin-right: 16.3%;
+}
+
+.page__title {
+    text-align: left;
+}
+
+.page__horizontal-line {
+    border: 1px solid black;
+    width:100%;
+    height: 1px;
+}
+
+.page__cards {
+    padding-top: 50px;
+    display: grid;
+    gap: 10%;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.card {
+    box-shadow: 2px 2px 2px 2px #646464;
+    text-align: left;
+}
+
+.card__name {
+    padding-top: 5px;
+}
+
+.card__body {
+    padding-top: 7px;
+}
+
+
+.card__horizontal-line {
+    border: 1px solid black;
+    width: 100%;
+    height: 1px;
+}
+
+.card__card-footer {
+    height: 40px;
+    background-color:  #05668d;
+    padding-top: 1px;
+    padding-right: 3px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    position: revert;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+
+.card-btn50__buttons{
+    alignment: center;
+    font-size: 0.93vw;
+    width: 50%;
+    height: 35px;
+    color: #EBF2FA;
+    background: #427aa1;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.card-btn100__buttons{
+    alignment: center;
+    width: 100%;
+    height: 40px;
+    color: #EBF2FA;
+    background: #427aa1;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.card-btn15__buttons{
+    alignment: center;
+    width: 15%;
+    height: 40px;
+    color: #EBF2FA;
+    background:  #6c757d;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+}
+.card-btn-updateProfile__buttons{
+    width: 17%;
+    height: 40px;
+    color: black;
+    background:  #a5be00;
+    text-align: center;
+    border-radius: 5px;
+
+}
+
+.card__card-footer a {
+    color: #EBF2FA;
+    text-decoration: none;
+}
+
+.card__card-footer a:hover {
+    color: #EBF2FA;
+    text-decoration: underline;
+}
+
+
+@media (min-width: 600px) {
+    .page__cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 900px) {
+    .page__cards {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 1400px) {
+    .page__cards {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+

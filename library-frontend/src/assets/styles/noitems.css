@@ -1,0 +1,10 @@
+.no-items-found-page {
+    padding-top: 15%;
+    margin-left: 16.3%;
+    margin-right: 16.3%;
+    text-align: center;
+}
+
+.no-items-found-page p {
+    font-size: 18px;
+}

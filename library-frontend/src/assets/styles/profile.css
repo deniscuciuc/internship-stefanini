@@ -1,0 +1,25 @@
+/* COMPONENTS */
+@import url("./profile/header.css");
+@import url("./profile/sidemenu.css");
+@import url("./profile/profileinfo.css");
+@import url("./profile/auth.css");
+@import url("./profile/mybooks.css");
+@import url("./profile/history.css");
+@import url("./profile/users.css");
+
+/* PAGE */
+.profile-page {
+    padding-top: 90px;
+    margin-left: 11%;
+    margin-right: 16.3%;
+}
+
+.profile-menu-content-flex {
+    display: flex;
+}
+
+.profile-side-content {
+     width: 90%;
+     padding-top: 1em;
+     padding-bottom: 13em;
+ }

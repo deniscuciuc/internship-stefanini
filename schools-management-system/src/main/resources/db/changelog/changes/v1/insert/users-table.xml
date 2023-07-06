@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+
+    <changeSet id="insert-users-table-2" author="dcuciuc">
+
+        <insert tableName="users">
+            <column name="email" value="tamara.terescneko@gmail.com"/>
+            <column name="password" value="password"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="role" value="DIRECTOR"/>
+            <column name="profile_id" value="1"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="email" value="vladimir.hodniuk@gmail.com"/>
+            <column name="password" value="password"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="role" value="HEAD_TEACHER"/>
+            <column name="profile_id" value="2"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="email" value="mircea.malik@gmail.com"/>
+            <column name="password" value="password"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="role" value="HEAD_TEACHER"/>
+            <column name="profile_id" value="3"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="email" value="denis.keliz@gmail.com"/>
+            <column name="password" value="password"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="role" value="TEACHER"/>
+            <column name="profile_id" value="4"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="email" value="elena.ptasenco@gmail.com"/>
+            <column name="password" value="password"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="role" value="TEACHER"/>
+            <column name="profile_id" value="5"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="email" value="micrea.malik@gmail.com"/>
+            <column name="password" value="password"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="role" value="TEACHER"/>
+            <column name="profile_id" value="6"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="email" value="mihail.heidzo@gmail.com"/>
+            <column name="password" value="password"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="role" value="TEACHER"/>
+            <column name="profile_id" value="7"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="email" value="elena.murea@gmail.com"/>
+            <column name="password" value="password"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="role" value="TEACHER"/>
+            <column name="profile_id" value="8"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="email" value="cristina.heliga@gmail.com"/>
+            <column name="password" value="password"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="role" value="TEACHER"/>
+            <column name="profile_id" value="9"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="email" value="alina.cebotari@gmail.com"/>
+            <column name="password" value="password"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="role" value="TEACHER"/>
+            <column name="profile_id" value="10"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="email" value="ana.milka@gmail.com"/>
+            <column name="password" value="password"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="role" value="TEACHER"/>
+            <column name="profile_id" value="11"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="email" value="yoshito.barnes@gmail.com"/>
+            <column name="password" value="password"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="role" value="STUDENT"/>
+            <column name="profile_id" value="11"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="email" value="adonis.barnes@gmail.com"/>
+            <column name="password" value="password"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="role" value="STUDENT"/>
+            <column name="profile_id" value="12"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="email" value="grayse.rivera@gmail.com"/>
+            <column name="password" value="password"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="role" value="STUDENT"/>
+            <column name="profile_id" value="13"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="email" value="joshua.rivera@gmail.com"/>
+            <column name="password" value="password"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="role" value="STUDENT"/>
+            <column name="profile_id" value="14"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="email" value="lucas.flores@gmail.com"/>
+            <column name="password" value="password"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="role" value="STUDENT"/>
+            <column name="profile_id" value="15"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="email" value="jase.flores@gmail.com"/>
+            <column name="password" value="password"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="role" value="STUDENT"/>
+            <column name="profile_id" value="16"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="email" value="silas.flores@gmail.com"/>
+            <column name="password" value="password"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="role" value="STUDENT"/>
+            <column name="profile_id" value="17"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="email" value="ryker.torres@gmail.com"/>
+            <column name="password" value="password"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="role" value="STUDENT"/>
+            <column name="profile_id" value="18"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="email" value="lionel.harris@gmail.com"/>
+            <column name="password" value="password"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="role" value="STUDENT"/>
+            <column name="profile_id" value="19"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="email" value="jemma.diaz@gmail.com"/>
+            <column name="password" value="password"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="role" value="STUDENT"/>
+            <column name="profile_id" value="20"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="email" value="danna.harris@gmail.com"/>
+            <column name="password" value="password"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="role" value="STUDENT"/>
+            <column name="profile_id" value="21"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="email" value="scarlett.harris@gmail.com"/>
+            <column name="password" value="password"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="role" value="STUDENT"/>
+            <column name="profile_id" value="22"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="email" value="omega.martin@gmail.com"/>
+            <column name="password" value="password"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="role" value="STUDENT"/>
+            <column name="profile_id" value="23"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="email" value="francisca.washington24@gmail.com"/>
+            <column name="password" value="password"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="role" value="STUDENT"/>
+            <column name="profile_id" value="24"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="email" value="kate.gonzalez21@gmail.com"/>
+            <column name="password" value="password"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="role" value="STUDENT"/>
+            <column name="profile_id" value="25"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="email" value="kate.gonzalez@gmail.com"/>
+            <column name="password" value="password"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="role" value="STUDENT"/>
+            <column name="profile_id" value="26"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="email" value="bonnie.allen@gmail.com"/>
+            <column name="password" value="password"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="role" value="STUDENT"/>
+            <column name="profile_id" value="26"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="email" value="delilah.torres@gmail.com"/>
+            <column name="password" value="password"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="role" value="STUDENT"/>
+            <column name="profile_id" value="27"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="email" value="dania.patterson@gmail.com"/>
+            <column name="password" value="password"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="role" value="STUDENT"/>
+            <column name="profile_id" value="28"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="email" value="yelena.henderson@gmail.com"/>
+            <column name="password" value="password"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="role" value="STUDENT"/>
+            <column name="profile_id" value="29"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="email" value="dean.barnes@gmail.com"/>
+            <column name="password" value="password"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="role" value="PARENT"/>
+            <column name="profile_id" value="30"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="email" value="alisa.barnes@gmail.com"/>
+            <column name="password" value="password"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="role" value="PARENT"/>
+            <column name="profile_id" value="31"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="email" value="mark.rivera@gmail.com"/>
+            <column name="password" value="password"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="role" value="PARENT"/>
+            <column name="profile_id" value="32"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="email" value="sam.flores@gmail.com"/>
+            <column name="password" value="password"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="role" value="PARENT"/>
+            <column name="profile_id" value="33"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="email" value="yenifer.flores@gmail.com"/>
+            <column name="password" value="password"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="role" value="PARENT"/>
+            <column name="profile_id" value="34"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="email" value="dean.torres@gmail.com"/>
+            <column name="password" value="password"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="role" value="PARENT"/>
+            <column name="profile_id" value="35"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="email" value="saili.torres@gmail.com"/>
+            <column name="password" value="password"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="role" value="PARENT"/>
+            <column name="profile_id" value="36"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="email" value="donald.harris@gmail.com"/>
+            <column name="password" value="password"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="role" value="PARENT"/>
+            <column name="profile_id" value="37"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="email" value="cristin.harris@gmail.com"/>
+            <column name="password" value="password"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="role" value="PARENT"/>
+            <column name="profile_id" value="38"/>
+        </insert>
+
+    </changeSet>
+
+</databaseChangeLog>

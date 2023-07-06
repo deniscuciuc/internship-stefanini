@@ -1,0 +1,9 @@
+.auth-email-password {
+    display: flex;
+    padding-top: 10%;
+    padding-left: 25%;
+}
+
+.auth-email-password strong {
+    text-decoration: underline;
+}

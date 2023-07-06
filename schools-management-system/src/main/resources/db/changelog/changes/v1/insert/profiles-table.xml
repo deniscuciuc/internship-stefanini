@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+
+    <changeSet id="insert-profiles-table-1" author="dcuciuc">
+
+        <insert tableName="profiles">
+            <column name="first_name" value="Tamara"/>
+            <column name="last_name" value="Terescneko"/>
+            <column name="gender" value="FEMALE"/>
+            <column name="phone_number" value="06897822"/>
+            <column name="address" value="Gagarin 1"/>
+        </insert>
+
+        <insert tableName="profiles">
+            <column name="first_name" value="Vladimir"/>
+            <column name="last_name" value="Hodniuk"/>
+            <column name="gender" value="MALE"/>
+            <column name="phone_number" value="07822341"/>
+            <column name="address" value="Avram Iancu 21"/>
+        </insert>
+
+        <insert tableName="profiles">
+            <column name="first_name" value="Mircea"/>
+            <column name="last_name" value="Malik"/>
+            <column name="gender" value="MALE"/>
+            <column name="phone_number" value="07822372"/>
+            <column name="address" value="Puskin 34"/>
+        </insert>
+
+        <insert tableName="profiles">
+            <column name="first_name" value="Anatol"/>
+            <column name="last_name" value="Melnik"/>
+            <column name="gender" value="MALE"/>
+            <column name="phone_number" value="05212372"/>
+            <column name="address" value="Puskin 30"/>
+        </insert>
+
+        <insert tableName="profiles">
+            <column name="first_name" value="Denis"/>
+            <column name="last_name" value="Keliz"/>
+            <column name="gender" value="MALE"/>
+            <column name="phone_number" value="078979966"/>
+            <column name="address" value="Puskin 14"/>
+        </insert>
+
+        <insert tableName="profiles">
+            <column name="first_name" value="Elena"/>
+            <column name="last_name" value="Ptasenco"/>
+            <column name="gender" value="FEMALE"/>
+            <column name="phone_number" value="06857722"/>
+            <column name="address" value="Avram Iancu 32"/>
+        </insert>
+
+        <insert tableName="profiles">
+            <column name="first_name" value="Micrea"/>
+            <column name="last_name" value="Malik"/>
+            <column name="gender" value="MALE"/>
+            <column name="phone_number" value="07822372"/>
+            <column name="address" value="Puskin 34"/>
+        </insert>
+
+        <insert tableName="profiles">
+            <column name="first_name" value="Mihail"/>
+            <column name="last_name" value="Heidzo"/>
+            <column name="gender" value="MALE"/>
+            <column name="phone_number" value="07461372"/>
+            <column name="address" value="Puskin 29"/>
+        </insert>
+
+        <insert tableName="profiles">
+            <column name="first_name" value="Elena"/>
+            <column name="last_name" value="Murea"/>
+            <column name="gender" value="FEMALE"/>
+            <column name="phone_number" value="068979988"/>
+            <column name="address" value="Gagarin 34"/>
+        </insert>
+
+        <insert tableName="profiles">
+            <column name="first_name" value="Cristina"/>
+            <column name="last_name" value="Heliga"/>
+            <column name="gender" value="FEMALE"/>
+            <column name="phone_number" value="06755421"/>
+            <column name="address" value="Sfatul Tarii 34"/>
+        </insert>
+
+        <insert tableName="profiles">
+            <column name="first_name" value="Alina"/>
+            <column name="last_name" value="Cebotari"/>
+            <column name="gender" value="FEMALE"/>
+            <column name="phone_number" value="08565421"/>
+            <column name="address" value="Eminescu 1"/>
+        </insert>
+
+        <insert tableName="profiles">
+            <column name="first_name" value="Ana"/>
+            <column name="last_name" value="Milka"/>
+            <column name="gender" value="FEMALE"/>
+            <column name="phone_number" value="06492421"/>
+            <column name="address" value="Eminescu 24"/>
+        </insert>
+
+        <insert tableName="profiles">
+            <column name="first_name" value="Yoshito"/>
+            <column name="last_name" value="Barnes"/>
+            <column name="gender" value="MALE"/>
+            <column name="phone_number" value="06961951"/>
+            <column name="address" value="Puskin 1"/>
+        </insert>
+
+        <insert tableName="profiles">
+            <column name="first_name" value="Adonis"/>
+            <column name="last_name" value="Barnes"/>
+            <column name="gender" value="MALE"/>
+            <column name="phone_number" value="07238762"/>
+            <column name="address" value="Puskin 1"/>
+        </insert>
+
+        <insert tableName="profiles">
+            <column name="first_name" value="Grayse"/>
+            <column name="last_name" value="Rivera"/>
+            <column name="gender" value="MALE"/>
+            <column name="phone_number" value="06896462"/>
+            <column name="address" value="Puskin 34"/>
+        </insert>
+
+        <insert tableName="profiles">
+            <column name="first_name" value="Joshua"/>
+            <column name="last_name" value="Rivera"/>
+            <column name="gender" value="MALE"/>
+            <column name="phone_number" value="07896462"/>
+            <column name="address" value="Puskin 34"/>
+        </insert>
+
+        <insert tableName="profiles">
+            <column name="first_name" value="Lucas"/>
+            <column name="last_name" value="Flores"/>
+            <column name="gender" value="MALE"/>
+            <column name="phone_number" value="09262690"/>
+            <column name="address" value="Eminescu 21"/>
+        </insert>
+
+        <insert tableName="profiles">
+            <column name="first_name" value="Jase"/>
+            <column name="last_name" value="Flores"/>
+            <column name="gender" value="MALE"/>
+            <column name="phone_number" value="09342690"/>
+            <column name="address" value="Eminescu 21"/>
+        </insert>
+
+        <insert tableName="profiles">
+            <column name="first_name" value="Silas"/>
+            <column name="last_name" value="Flores"/>
+            <column name="gender" value="MALE"/>
+            <column name="phone_number" value="09212690"/>
+            <column name="address" value="Eminescu 21"/>
+        </insert>
+
+        <insert tableName="profiles">
+            <column name="first_name" value="Ryker"/>
+            <column name="last_name" value="Torres"/>
+            <column name="gender" value="MALE"/>
+            <column name="phone_number" value="06373763"/>
+            <column name="address" value="Eminescu 3"/>
+        </insert>
+
+        <insert tableName="profiles">
+            <column name="first_name" value="Lionel"/>
+            <column name="last_name" value="Harris"/>
+            <column name="gender" value="MALE"/>
+            <column name="phone_number" value="07182045"/>
+            <column name="address" value="Stefan cel Mare 91"/>
+        </insert>
+
+        <insert tableName="profiles">
+            <column name="first_name" value="Jemma"/>
+            <column name="last_name" value="Diaz"/>
+            <column name="gender" value="FEMALE"/>
+            <column name="phone_number" value="07182045"/>
+            <column name="address" value="Stefan cel Mare 21"/>
+        </insert>
+
+        <insert tableName="profiles">
+            <column name="first_name" value="Danna"/>
+            <column name="last_name" value="Harris"/>
+            <column name="gender" value="FEMALE"/>
+            <column name="phone_number" value="07182045"/>
+            <column name="address" value="Stefan cel Mare 9"/>
+        </insert>
+
+        <insert tableName="profiles">
+            <column name="first_name" value="Scarlett"/>
+            <column name="last_name" value="Harris"/>
+            <column name="gender" value="FEMALE"/>
+            <column name="phone_number" value="07182045"/>
+            <column name="address" value="Stefan cel Mare 94"/>
+        </insert>
+
+        <insert tableName="profiles">
+            <column name="first_name" value="Omega"/>
+            <column name="last_name" value="Martin"/>
+            <column name="gender" value="FEMALE"/>
+            <column name="phone_number" value="07182045"/>
+            <column name="address" value="Stefan cel Mare 22"/>
+        </insert>
+
+        <insert tableName="profiles">
+            <column name="first_name" value="Francisca"/>
+            <column name="last_name" value="Washington"/>
+            <column name="gender" value="FEMALE"/>
+            <column name="phone_number" value="07182045"/>
+            <column name="address" value="Stefan cel Mare 34"/>
+        </insert>
+
+        <insert tableName="profiles">
+            <column name="first_name" value="Kate"/>
+            <column name="last_name" value="Gonzalez"/>
+            <column name="gender" value="FEMALE"/>
+            <column name="phone_number" value="07182045"/>
+            <column name="address" value="Stefan cel Mare 44"/>
+        </insert>
+
+        <insert tableName="profiles">
+            <column name="first_name" value="Bonnie"/>
+            <column name="last_name" value="Allen"/>
+            <column name="gender" value="FEMALE"/>
+            <column name="phone_number" value="07182045"/>
+            <column name="address" value="Stefan cel Mare 91"/>
+        </insert>
+
+        <insert tableName="profiles">
+            <column name="first_name" value="Delilah"/>
+            <column name="last_name" value="Torres"/>
+            <column name="gender" value="FEMALE"/>
+            <column name="phone_number" value="07182045"/>
+            <column name="address" value="Stefan cel Mare 91"/>
+        </insert>
+
+        <insert tableName="profiles">
+            <column name="first_name" value="Dania"/>
+            <column name="last_name" value="Patterson"/>
+            <column name="gender" value="FEMALE"/>
+            <column name="phone_number" value="07182045"/>
+            <column name="address" value="Stefan cel Mare 91"/>
+        </insert>
+
+        <insert tableName="profiles">
+            <column name="first_name" value="Yelena"/>
+            <column name="last_name" value="Henderson"/>
+            <column name="gender" value="FEMALE"/>
+            <column name="phone_number" value="07182045"/>
+            <column name="address" value="Stefan cel Mare 91"/>
+        </insert>
+
+        <insert tableName="profiles">
+            <column name="first_name" value="Dean"/>
+            <column name="last_name" value="Barnes"/>
+            <column name="gender" value="MALE"/>
+            <column name="phone_number" value="07182045"/>
+            <column name="address" value="Puskin 1"/>
+        </insert>
+
+        <insert tableName="profiles">
+            <column name="first_name" value="Alisa"/>
+            <column name="last_name" value="Barnes"/>
+            <column name="gender" value="FEMALE"/>
+            <column name="phone_number" value="07182045"/>
+            <column name="address" value="Puskin 1"/>
+        </insert>
+
+        <insert tableName="profiles">
+            <column name="first_name" value="Mark"/>
+            <column name="last_name" value="Rivera"/>
+            <column name="gender" value="MALE"/>
+            <column name="phone_number" value="07182045"/>
+            <column name="address" value="Puskin 34"/>
+        </insert>
+
+        <insert tableName="profiles">
+            <column name="first_name" value="Sam"/>
+            <column name="last_name" value="Flores"/>
+            <column name="gender" value="MALE"/>
+            <column name="phone_number" value="09262690"/>
+            <column name="address" value="Eminescu 21"/>
+        </insert>
+
+        <insert tableName="profiles">
+            <column name="first_name" value="Yenifer"/>
+            <column name="last_name" value="Flores"/>
+            <column name="gender" value="FEMALE"/>
+            <column name="phone_number" value="09342690"/>
+            <column name="address" value="Eminescu 21"/>
+        </insert>
+
+        <insert tableName="profiles">
+            <column name="first_name" value="Dean"/>
+            <column name="last_name" value="Torres"/>
+            <column name="gender" value="MALE"/>
+            <column name="phone_number" value="07182045"/>
+            <column name="address" value="Eminescu 3"/>
+        </insert>
+
+        <insert tableName="profiles">
+            <column name="first_name" value="Saili"/>
+            <column name="last_name" value="Torres"/>
+            <column name="gender" value="FEMALE"/>
+            <column name="phone_number" value="07182045"/>
+            <column name="address" value="Eminescu 3"/>
+        </insert>
+
+        <insert tableName="profiles">
+            <column name="first_name" value="Donald"/>
+            <column name="last_name" value="Harris"/>
+            <column name="gender" value="MALE"/>
+            <column name="phone_number" value="07182045"/>
+            <column name="address" value="Stefan cel Mare 91"/>
+        </insert>
+
+
+        <insert tableName="profiles">
+            <column name="first_name" value="Cristin"/>
+            <column name="last_name" value="Harris"/>
+            <column name="gender" value="FEMALE"/>
+            <column name="phone_number" value="07182045"/>
+            <column name="address" value="Stefan cel Mare 91"/>
+        </insert>
+
+    </changeSet>
+
+</databaseChangeLog>

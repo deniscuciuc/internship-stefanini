@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+
+    <changeSet id="insert-courses-table-3" author="dcuciuc">
+
+        <insert tableName="courses">
+            <column name="course_name" value="Biology"/>
+        </insert>
+
+        <insert tableName="courses">
+            <column name="course_name" value="Math"/>
+        </insert>
+
+        <insert tableName="courses">
+            <column name="course_name" value="Physics"/>
+        </insert>
+
+        <insert tableName="courses">
+            <column name="course_name" value="History"/>
+        </insert>
+
+        <insert tableName="courses">
+            <column name="course_name" value="Physical Education"/>
+        </insert>
+
+        <insert tableName="courses">
+            <column name="course_name" value="English"/>
+        </insert>
+
+        <insert tableName="courses">
+            <column name="course_name" value="Chemistry"/>
+        </insert>
+
+        <insert tableName="courses">
+            <column name="course_name" value="Literature"/>
+        </insert>
+
+    </changeSet>
+
+</databaseChangeLog>

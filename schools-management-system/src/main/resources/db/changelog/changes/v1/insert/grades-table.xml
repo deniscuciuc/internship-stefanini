@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+
+    <changeSet id="insert-grades-table-4" author="dcuciuc">
+
+        <insert tableName="grades">
+            <column name="year_from" valueNumeric="2014"/>
+            <column name="year_to" valueNumeric="2015"/>
+            <column name="grade_number" valueNumeric="8"/>
+            <column name="subgroup" value="a"/>
+        </insert>
+
+        <insert tableName="grades">
+            <column name="year_from" valueNumeric="2015"/>
+            <column name="year_to" valueNumeric="2016"/>
+            <column name="grade_number" valueNumeric="9"/>
+            <column name="subgroup" value="a"/>
+        </insert>
+
+        <insert tableName="grades">
+            <column name="year_from" valueNumeric="2016"/>
+            <column name="year_to" valueNumeric="2017"/>
+            <column name="grade_number" valueNumeric="10"/>
+            <column name="subgroup" value="a"/>
+        </insert>
+
+        <insert tableName="grades">
+            <column name="year_from" valueNumeric="2017"/>
+            <column name="year_to" valueNumeric="2018"/>
+            <column name="grade_number" valueNumeric="11"/>
+            <column name="subgroup" value="b"/>
+        </insert>
+
+        <insert tableName="grades">
+            <column name="year_from" valueNumeric="2022"/>
+            <column name="year_to" valueNumeric="2023"/>
+            <column name="grade_number" valueNumeric="12"/>
+            <column name="subgroup" value="b"/>
+        </insert>
+
+    </changeSet>
+
+</databaseChangeLog>

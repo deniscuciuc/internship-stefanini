@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+
+    <changeSet id="init-marks-table-5" author="dcuciuc">
+
+        <createTable tableName="marks">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints unique="true" nullable="false" primaryKey="true"/>
+            </column>
+            <column name="mark" type="varchar(50)"/>
+            <column name="created_at" type="date"/>
+            <column name="student_id" type="bigint">
+                <constraints referencedTableName="users"
+                             referencedColumnNames="id"
+                             foreignKeyName="fk_m_student_id"/>
+            </column>
+            <column name="teacher_id" type="bigint">
+                <constraints referencedTableName="users"
+                             referencedColumnNames="id"
+                             foreignKeyName="fk_m_teacher_id"/>
+            </column>
+            <column name="course_id" type="bigint">
+                <constraints referencedTableName="courses"
+                             referencedColumnNames="id"
+                             foreignKeyName="fk_m_course_id"/>
+            </column>
+        </createTable>
+
+    </changeSet>
+
+</databaseChangeLog>

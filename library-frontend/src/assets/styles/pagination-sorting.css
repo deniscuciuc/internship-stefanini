@@ -1,0 +1,35 @@
+.pagination-container {
+    display: flex;
+    padding-left: 10%;
+    padding-top: 20px;
+    padding-right: 5%;
+}
+
+.pagination-container__authors {
+    display: flex;
+    padding-left: 50%;
+    padding-top: 20px;
+    padding-right: 5%;
+}
+
+.pagination_container__page-number {
+    font-size: 23px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.sorting-container {
+    display: flex;
+}
+
+.sorting-container__sort-by-selector {
+    padding-top: 20px;
+    width: 230px !important;
+}
+
+
+.sorting-container__sort-arrows {
+    padding-left: 20px;
+    padding-top: 23px;
+    padding-right: 10px;
+}

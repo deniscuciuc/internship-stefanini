@@ -1,0 +1,20 @@
+.book-admin-page {
+    padding-top: 75px;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.manage-button {
+    margin-left: 1%;
+    display: inline-flex;
+}
+
+.manage-button .manage-button__item  {
+    padding-top: 20px;
+    padding-left: 2px;
+    float: right;
+    width: 240px;
+    height: 35px;
+}
+
+

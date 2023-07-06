@@ -1,0 +1,39 @@
+.profile-side-content__name {
+    display: flex;
+    padding-top: 20px;
+    padding-left: 25%;
+}
+
+.profile-side-content__name h5:last-child {
+    padding-left: 20%;
+}
+
+.user-info__phone-number {
+    padding-left: 25%;
+    padding-top: 50px;
+}
+
+.user-info__update-info {
+    padding-left: 25%;
+    padding-top: 20px;
+}
+
+.card-btn-updateProfile__buttons {
+    background: white!important;
+}
+
+.card-btn-updateProfile__buttons:hover {
+    background: #427aa1!important;
+    color:white!important;
+}
+
+.card-btn100__buttons {
+    color: black!important;
+    background: white!important;
+    border: black 1px solid!important;
+}
+
+.card-btn100__buttons:hover {
+    color: white!important;
+    background: #427aa1 !important;
+}

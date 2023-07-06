@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+
+    <changeSet id="init-users-table-2" author="dcuciuc">
+
+        <createTable tableName="users">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints unique="true" nullable="false" primaryKey="true"/>
+            </column>
+            <column name="email" type="varchar(255)"/>
+            <column name="password" type="varchar(500)"/>
+            <column name="is_active" type="boolean"/>
+            <column name="profile_id" type="bigint">
+                <constraints referencedTableName="profiles"
+                             referencedColumnNames="id"
+                             foreignKeyName="fk_profile_id"/>
+            </column>
+            <column name="role" type="varchar(50)"/>
+        </createTable>
+
+    </changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,1 @@
+![Database Screenshot](../../../../../resources/images/database.png)

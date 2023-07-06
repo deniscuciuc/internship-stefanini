@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+
+    <changeSet id="insert-students_grades-table-5" author="dcuciuc">
+
+        <insert tableName="students_grades">
+            <column name="student_id" valueNumeric="15"/>
+            <column name="grade_id" valueNumeric="1"/>
+        </insert>
+
+        <insert tableName="students_grades">
+            <column name="student_id" valueNumeric="15"/>
+            <column name="grade_id" valueNumeric="2"/>
+        </insert>
+
+        <insert tableName="students_grades">
+            <column name="student_id" valueNumeric="15"/>
+            <column name="grade_id" valueNumeric="3"/>
+        </insert>
+
+        <insert tableName="students_grades">
+            <column name="student_id" valueNumeric="15"/>
+            <column name="grade_id" valueNumeric="4"/>
+        </insert>
+
+        <insert tableName="students_grades">
+            <column name="student_id" valueNumeric="15"/>
+            <column name="grade_id" valueNumeric="5"/>
+        </insert>
+
+        <insert tableName="students_grades">
+            <column name="student_id" valueNumeric="16"/>
+            <column name="grade_id" valueNumeric="1"/>
+        </insert>
+
+        <insert tableName="students_grades">
+            <column name="student_id" valueNumeric="16"/>
+            <column name="grade_id" valueNumeric="2"/>
+        </insert>
+
+        <insert tableName="students_grades">
+            <column name="student_id" valueNumeric="16"/>
+            <column name="grade_id" valueNumeric="3"/>
+        </insert>
+
+        <insert tableName="students_grades">
+            <column name="student_id" valueNumeric="16"/>
+            <column name="grade_id" valueNumeric="4"/>
+        </insert>
+
+        <insert tableName="students_grades">
+            <column name="student_id" valueNumeric="16"/>
+            <column name="grade_id" valueNumeric="5"/>
+        </insert>
+
+        <insert tableName="students_grades">
+            <column name="student_id" valueNumeric="17"/>
+            <column name="grade_id" valueNumeric="1"/>
+        </insert>
+
+        <insert tableName="students_grades">
+            <column name="student_id" valueNumeric="17"/>
+            <column name="grade_id" valueNumeric="2"/>
+        </insert>
+
+        <insert tableName="students_grades">
+            <column name="student_id" valueNumeric="17"/>
+            <column name="grade_id" valueNumeric="3"/>
+        </insert>
+
+        <insert tableName="students_grades">
+            <column name="student_id" valueNumeric="17"/>
+            <column name="grade_id" valueNumeric="4"/>
+        </insert>
+
+        <insert tableName="students_grades">
+            <column name="student_id" valueNumeric="17"/>
+            <column name="grade_id" valueNumeric="5"/>
+        </insert>
+
+        <insert tableName="students_grades">
+            <column name="student_id" valueNumeric="18"/>
+            <column name="grade_id" valueNumeric="1"/>
+        </insert>
+
+        <insert tableName="students_grades">
+            <column name="student_id" valueNumeric="18"/>
+            <column name="grade_id" valueNumeric="2"/>
+        </insert>
+
+        <insert tableName="students_grades">
+            <column name="student_id" valueNumeric="18"/>
+            <column name="grade_id" valueNumeric="3"/>
+        </insert>
+
+        <insert tableName="students_grades">
+            <column name="student_id" valueNumeric="18"/>
+            <column name="grade_id" valueNumeric="4"/>
+        </insert>
+
+        <insert tableName="students_grades">
+            <column name="student_id" valueNumeric="18"/>
+            <column name="grade_id" valueNumeric="5"/>
+        </insert>
+
+        <insert tableName="students_grades">
+            <column name="student_id" valueNumeric="19"/>
+            <column name="grade_id" valueNumeric="1"/>
+        </insert>
+
+        <insert tableName="students_grades">
+            <column name="student_id" valueNumeric="19"/>
+            <column name="grade_id" valueNumeric="2"/>
+        </insert>
+
+        <insert tableName="students_grades">
+            <column name="student_id" valueNumeric="19"/>
+            <column name="grade_id" valueNumeric="3"/>
+        </insert>
+
+        <insert tableName="students_grades">
+            <column name="student_id" valueNumeric="19"/>
+            <column name="grade_id" valueNumeric="4"/>
+        </insert>
+
+        <insert tableName="students_grades">
+            <column name="student_id" valueNumeric="19"/>
+            <column name="grade_id" valueNumeric="5"/>
+        </insert>
+
+        <insert tableName="students_grades">
+            <column name="student_id" valueNumeric="20"/>
+            <column name="grade_id" valueNumeric="1"/>
+        </insert>
+
+        <insert tableName="students_grades">
+            <column name="student_id" valueNumeric="20"/>
+            <column name="grade_id" valueNumeric="2"/>
+        </insert>
+
+        <insert tableName="students_grades">
+            <column name="student_id" valueNumeric="20"/>
+            <column name="grade_id" valueNumeric="3"/>
+        </insert>
+
+        <insert tableName="students_grades">
+            <column name="student_id" valueNumeric="20"/>
+            <column name="grade_id" valueNumeric="4"/>
+        </insert>
+
+        <insert tableName="students_grades">
+            <column name="student_id" valueNumeric="20"/>
+            <column name="grade_id" valueNumeric="5"/>
+        </insert>
+
+    </changeSet>
+
+</databaseChangeLog>
